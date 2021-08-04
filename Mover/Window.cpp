@@ -15,6 +15,7 @@ Window::Window(const std::string& title, unsigned int width, unsigned int height
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	id = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+
 	// Check that GLFW was initiailized properly
 	if (id == NULL) {
 		glfwTerminate();
@@ -22,13 +23,14 @@ Window::Window(const std::string& title, unsigned int width, unsigned int height
 	}
 
 	glfwMakeContextCurrent(id);
-	glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	// glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	// Set callbacks
 	glfwSetWindowUserPointer(id, this);
 	glfwSetKeyCallback(id, key_callback);
 	glfwSetFramebufferSizeCallback(id, framebuffer_size_callback);
-	glfwSetCursorPosCallback(id, )
+	glfwSetCursorPosCallback(id, cursor_pos_callback);
+	glfwSetMouseButtonCallback(id, mouse_button_callback);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cout << "Unable to initialize GLAD" << std::endl;
@@ -64,9 +66,12 @@ unsigned int Window::getHeight() const {
 	return height;
 }
 
-void Window::key_callback(GLFWwindow* id, int key, int scancode, int action, int mods) {
-	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
+const Window::Input& Window::getInputs() const {
+	return inputs;
 }
+
+// Callbacks
+
 
 void Window::framebuffer_size_callback(GLFWwindow* id, int width, int height) {
 	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
@@ -77,5 +82,29 @@ void Window::framebuffer_size_callback(GLFWwindow* id, int width, int height) {
 
 void Window::cursor_pos_callback(GLFWwindow* id, double xPos, double yPos) {
 	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
+	Window::Input inputs = window->inputs;
+	inputs.mouseX = (float)xPos;
+	inputs.mouseY = (float)yPos;
+}
 
+void Window::key_callback(GLFWwindow* id, int key, int scancode, int action, int mods) {
+	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
+	Window::Input inputs = window->inputs;
+
+	if (action == GLFW_PRESS) {
+		inputs.pressedKeys[key] = true;
+	} else if (action == GLFW_RELEASE) {
+		inputs.pressedKeys[key] = false;
+	}
+}
+
+void Window::mouse_button_callback(GLFWwindow* id, int button, int action, int mods) {
+	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
+	Window::Input inputs = window->inputs;
+
+	if (action == GLFW_PRESS) {
+		inputs.pressedMouseButtons[button] = true;
+	} else if (action == GLFW_RELEASE) {
+		inputs.pressedMouseButtons[button] = false;
+	}
 }
