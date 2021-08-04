@@ -1,18 +1,6 @@
 #include "ComponentManager.h"
 
-template<typename ComponentType>
-void ComponentManager::RegisterComponent() {
-	const char* componentTypeName = typeid(ComponentType).name();
-	ComponentId componentId = nextComponentId++;
-
-	componentIdMap[componentTypeName] = componentId;
-}
-
-template<typename ComponentType>
-ComponentId ComponentManager::getComponentId() {
-	const char* componentTypeName = typeid(ComponentType).name();
-	return componentIdMap[componentTypeName];
-}
+int ComponentIdCounter::counter = 0;
 
 template <typename ComponentType>
 void ComponentManager::addComponent(Entity entity, ComponentType component) {

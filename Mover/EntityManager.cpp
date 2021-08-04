@@ -28,10 +28,16 @@ void EntityManager::destroyEntity(Entity entity) {
 	numAvailableEntities--;
 }
 
-void EntityManager::setSignature(Entity entity, Signature signature) {
+void EntityManager::setSignature(Entity entity, const Signature& signature) {
 	entitySignatures[entity] = signature;
+}
+
+void EntityManager::setSignatureBit(Entity entity, int bit, bool val) {
+	Signature& signature = entitySignatures[entity];
+	signature.set(bit, val);
 }
 
 Signature EntityManager::getSignature(Entity entity) const {
 	return entitySignatures[entity];	
 }
+

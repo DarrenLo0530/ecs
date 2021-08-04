@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\systems">
-      <UniqueIdentifier>{d18010a0-1310-4266-b6b4-1424afbaf262}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ecs">
       <UniqueIdentifier>{49631fdb-b2f7-47d0-9934-388e91a9fa5c}</UniqueIdentifier>
     </Filter>
@@ -27,6 +24,12 @@
     </Filter>
     <Filter Include="Source Files\ecs\components">
       <UniqueIdentifier>{18d2b99c-6e2f-4ff5-a7bf-5ba658d4bd68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ecs\systems">
+      <UniqueIdentifier>{193344f1-eac0-455a-83d2-91606a37c11f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ecs\systems">
+      <UniqueIdentifier>{82c7041c-6423-45c0-9e1d-e8380feb803e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -45,9 +48,6 @@
     <ClCompile Include="EntityManager.cpp">
       <Filter>Source Files\ecs</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ComponentArray.cpp">
       <Filter>Source Files\ecs\components</Filter>
     </ClCompile>
@@ -56,6 +56,18 @@
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemManager.cpp">
+      <Filter>Source Files\ecs\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinator.cpp">
+      <Filter>Source Files\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\ecs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +95,7 @@
     <ClInclude Include="Entity.h">
       <Filter>Header Files\ecs</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentId.h">
+    <ClInclude Include="Component.h">
       <Filter>Header Files\ecs\components</Filter>
     </ClInclude>
     <ClInclude Include="ComponentArray.h">
@@ -91,6 +103,15 @@
     </ClInclude>
     <ClInclude Include="ComponentManager.h">
       <Filter>Header Files\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Header Files\ecs\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemManager.h">
+      <Filter>Header Files\ecs\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Coordinator.h">
+      <Filter>Header Files\ecs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

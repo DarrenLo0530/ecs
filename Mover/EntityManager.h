@@ -14,7 +14,8 @@ public:
 	EntityManager();
 	Entity createEntity();
 	void destroyEntity(Entity entity);
-	void setSignature(Entity entity, Signature signature);
+	void setSignature(Entity entity, const Signature& signature);
+	void setSignatureBit(Entity entity, int bit, bool val);
 	Signature getSignature(Entity entity) const;
 };
 

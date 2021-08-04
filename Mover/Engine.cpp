@@ -3,8 +3,9 @@
 #include <chrono>
 #include <iostream>
 
-const double updateRate = 1.0 / 60.0;
-const int maxSamples = 5;
+const float UPS = 30.0f;
+const float secondsPerUpdate = 1.0 / UPS;
+const int maxFPSSamples = 5;
 
 double getCurrentTime() {
 	auto duration = std::chrono::high_resolution_clock::now().time_since_epoch();
@@ -22,30 +23,34 @@ Engine::Engine(Window* window, Game* game) {
 void Engine::run() {
 	prevTime = getCurrentTime();
 
+
 	while (!window->isClosed()) {
+		window->clear();
+
 		double currTime = getCurrentTime();
 		double timeElapsed = currTime - prevTime;
 		prevTime = currTime;
 		accumulator += timeElapsed;
 
-		while (accumulator >= updateRate) {
+		while (accumulator >= secondsPerUpdate) {
 			// Update game logic in a fixed time step
-			accumulator -= updateRate;
-			game->update();
+			accumulator -= secondsPerUpdate;
+			//game->update();
 		}
 
 		// Calculate fps
 		updateFPS(timeElapsed);
 
 		// Render the game with interpolation for variable frame rate
-		float renderInterpolation = (float)accumulator / (float) updateRate;
-		game->render(renderInterpolation);
+		float renderInterpolation = (float)accumulator / (float) secondsPerUpdate;
+		//game->render(renderInterpolation);
+		window->update();
 	}
 }
 
 void Engine::updateFPS(double timeElapsed) {
-	if (currSample == maxSamples) {
-		fps = avgFps / maxSamples;
+	if (currSample == maxFPSSamples) {
+		fps = avgFps / maxFPSSamples;
 
 		currSample = 0;
 		avgFps = 0.0;
