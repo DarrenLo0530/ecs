@@ -4,7 +4,7 @@
 
 class Game {
 protected:
-	const Window::Input* inputs;
+	const Window::Input* inputs = NULL;
 public:
 	virtual ~Game() = default;
 

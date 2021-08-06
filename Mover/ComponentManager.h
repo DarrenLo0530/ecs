@@ -13,7 +13,7 @@ private:
 
 		// Initialize a new componnt array if first time component is added
 		if (componentArrayMap.find(componentTypeName) == componentArrayMap.end()) {
-			componentArrayMap[typeName] = std::make_shared(ComponentArray<ComponentType>);
+			componentArrayMap[componentTypeName] = std::make_shared(ComponentArray<ComponentType>);
 		}
 
 		return std::static_pointer_cast<ComponentArray<ComponentType>>(componentArrayMap[componentTypeName]);

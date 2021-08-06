@@ -2,8 +2,6 @@
 
 #include "Window.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-
 Window::Window(const std::string& title, unsigned int width, unsigned int height) {
 	this->width = width;
 	this->height = height;

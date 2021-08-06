@@ -15,6 +15,6 @@ int main() {
 	Window* window = new Window("Mover", 1920, 1080);
 	Game* mover = new Mover();
 	Health h{};
-	std::cout << "Health family: " << h.family() << std::endl;
-	std::cout << "Transform family: " << getComponentFamily<Transform>() << std::endl;
+	std::cout << "Health family: " << h.id() << std::endl;
+	std::cout << "Transform family: " << getComponentId<Transform>() << std::endl;
 }

@@ -4,14 +4,13 @@
 
 class System {
 protected:
+	Signature signature;
 	std::set<Entity> entities;
 public:
-	void addEntity(Entity entity) {
-		entities.insert(entity);
-	}
+	System(Signature& signature);
 
-	void removeEntity(Entity entity) {
-		entities.erase(entity);
-	}
+	void addEntity(Entity entity);
+	void removeEntity(Entity entity);
+	const Signature& getSignature();
 };
 

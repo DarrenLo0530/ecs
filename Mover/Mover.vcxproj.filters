@@ -57,16 +57,19 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="System.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SystemManager.cpp">
       <Filter>Source Files\ecs\systems</Filter>
     </ClCompile>
-    <ClCompile Include="Coordinator.cpp">
+    <ClCompile Include="ComponentCoordinator.cpp">
       <Filter>Source Files\ecs</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Source Files\ecs\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
       <Filter>Source Files\ecs</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,7 +113,13 @@
     <ClInclude Include="SystemManager.h">
       <Filter>Header Files\ecs\systems</Filter>
     </ClInclude>
-    <ClInclude Include="Coordinator.h">
+    <ClInclude Include="ComponentCoordinator.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityHandle.h">
       <Filter>Header Files\ecs</Filter>
     </ClInclude>
   </ItemGroup>

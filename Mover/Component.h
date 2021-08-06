@@ -12,15 +12,15 @@ struct ComponentIdCounter {
 
 template <typename ComponentType>
 struct Component {
-	static inline int family() {
-		static int family = ComponentIdCounter::counter++;
-		return family;
+	static inline int id() {
+		static int id = ComponentIdCounter::counter++;
+		return id;
 	}
 };
 
 template <typename ComponentType>
-static int getComponentFamily() {
-	return Component<typename std::remove_const<ComponentType>::type>::family();
+static int getComponentId() {
+	return Component<typename std::remove_const<ComponentType>::type>::id();
 }
 
 

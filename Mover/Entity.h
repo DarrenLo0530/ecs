@@ -1,8 +1,8 @@
 #pragma once
 
+
 #include <cstdint>
 #include <bitset>
-
 
 const int MAX_ENTITIES = 3000;
 const int MAX_COMPONENTS = 32;
