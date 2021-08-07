@@ -2,8 +2,8 @@
 
 
 ComponentCoordinator::ComponentCoordinator(
-	std::shared_ptr<EntityManager> entityManager,
 	std::shared_ptr<ComponentManager> componentManager,
+	std::shared_ptr<EntityManager> entityManager,
 	std::shared_ptr<SystemManager> systemManager
 ) {
 	this->entityManager = entityManager;
@@ -22,6 +22,11 @@ void ComponentCoordinator::addComponent(Entity entity, ComponentType component) 
 }
 
 template <typename ComponentType>
+ComponentType& ComponentCoordinator::getComponent(Entity entity) {
+	return componentManager->getComponent(entity);
+}
+
+template <typename ComponentType>
 void ComponentCoordinator::removeComponent(Entity entity) {
 	componentManager->removeComponent<ComponentType>(entity);
 
@@ -31,7 +36,8 @@ void ComponentCoordinator::removeComponent(Entity entity) {
 	systemManager->entitySignatureChange(entity, entityManager->getSignature(entity));
 }
 
-template <typename ComponentType>
-ComponentType& ComponentCoordinator::getComponent(Entity entity) {
-	return componentManager->getComponent(entity);
+void ComponentCoordinator::removeAllComponents(Entity entity) {
+	// Do not destroy entity from entity manager since we only want to delete association with components
+	componentManager->removeEntity(entity);
+	systemManager->removeEntity(entity);
 }

@@ -143,7 +143,7 @@
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="ComponentCoordinator.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityHandle.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mover.cpp" />

@@ -4,25 +4,18 @@
 class EntityHandle {
 private:
 	Entity id;
-	ComponentCoordinator* componentCoordinator;
+	std::shared_ptr<ComponentCoordinator> componentCoordinator;
 public: 
-	EntityHandle(Entity id, ComponentCoordinator* componentCoordinator) {
-		this->id = id;
-		this->componentCoordinator = componentCoordinator;
-	}
+	EntityHandle(Entity id, std::shared_ptr<ComponentCoordinator> componentCoordinator);
 
 	template <typename ComponentType>
-	void addComponent(ComponentType component) {
-		componentCoordinator->addComponent(id, component);
-	}
+	void addComponent(ComponentType component);
 
 	template <typename ComponentType>
-	void removeComponent() {
-		componentCoordinator->removeComponent<ComponentType>(id);
-	}
+	void removeComponent();
 
 	template <typename ComponentType>
-	void getComponent() {
-		componentCoordinator->getComponent<ComponentType>(id);
-	}
+	void getComponent();
+
+	Entity getId() const;
 };

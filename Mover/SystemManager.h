@@ -13,7 +13,7 @@ public:
 	template <typename SystemType>
 	std::shared_ptr<SystemType> registerSystem();
 
-	void destroyEntity(Entity entity);
+	void removeEntity(Entity entity);
 	void entitySignatureChange(Entity entity, Signature entitySignature);
 };
 

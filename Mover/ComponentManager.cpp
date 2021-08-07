@@ -17,9 +17,9 @@ ComponentType& ComponentManager::getComponent(Entity entity) {
 	return getComponentArray<ComponentType>()->getComponent(entity);
 }
 
-void ComponentManager::destroyEntity(Entity entity) {
+void ComponentManager::removeEntity(Entity entity) {
 	for (auto const& pair : componentArrayMap) {
 		auto const& componentArray = pair.second;
-		componentArray->destroyEntity(entity);
+		componentArray->removeEntityComponent(entity);
 	}
 }

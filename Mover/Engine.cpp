@@ -23,7 +23,6 @@ Engine::Engine(Window* window, Game* game) {
 void Engine::run() {
 	prevTime = getCurrentTime();
 
-
 	while (!window->isClosed()) {
 		window->clear();
 

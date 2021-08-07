@@ -10,7 +10,7 @@ std::shared_ptr<SystemType> SystemManager::registerSystem() {
 	return system;
 }
 
-void SystemManager::destroyEntity(Entity entity) {
+void SystemManager::removeEntity(Entity entity) {
 	for (auto const& p: systems) {
 		p.second->removeEntity(entity);
 	}

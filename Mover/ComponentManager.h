@@ -30,5 +30,5 @@ public:
 	template <typename ComponentType>
 	ComponentType& getComponent(Entity entity);
 
-	void destroyEntity(Entity entity);
+	void removeEntity(Entity entity);
 };

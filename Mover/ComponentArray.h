@@ -7,11 +7,11 @@
 class IComponentArray {
 public:
 	virtual ~IComponentArray() = default;
-	virtual void destroyEntity(Entity entity) = 0;
+	virtual void removeEntityComponent(Entity entity) = 0;
 };
 
 template<typename ComponentType>
-class ComponentArray {
+class ComponentArray : IComponentArray {
 private:
 	int size;
 	std::array<ComponentType, MAX_ENTITIES> componentArray;
@@ -19,6 +19,6 @@ private:
 	std::unordered_map<int, Entity> indexToEntityMap;
 public:
 	void addEntityComponent(Entity entity, ComponentType component);
-	void removeEntityComponent(Entity entity);
+	void removeEntityComponent(Entity entity) override;
 	ComponentType& getComponent(Entity entity) const;
 };

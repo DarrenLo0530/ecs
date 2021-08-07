@@ -10,13 +10,13 @@ private:
 	std::shared_ptr<SystemManager> systemManager;
 
 	// Wrapper to abstract addition and removal of components
-	std::shared_ptr<ComponentCoordinator> coordinator;
+	std::shared_ptr<ComponentCoordinator> componentCoordinator;
 public:
 	World();
 
 	//Entities now handle components
 	EntityHandle createEntity();
-	void deleteEntity(EntityHandle entity);
+	void destroyEntity(EntityHandle entity);
 
 	// Systems
 	template <typename SystemType>

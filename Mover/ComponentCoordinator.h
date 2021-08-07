@@ -18,13 +18,13 @@
 
 class ComponentCoordinator {
 private:
-	std::shared_ptr<EntityManager> entityManager;
 	std::shared_ptr<ComponentManager> componentManager;
+	std::shared_ptr<EntityManager> entityManager;
 	std::shared_ptr<SystemManager> systemManager;
 public:
 	ComponentCoordinator(
-		std::shared_ptr<EntityManager> entityManager,
 		std::shared_ptr<ComponentManager> componentManager,
+		std::shared_ptr<EntityManager> entityManager,
 		std::shared_ptr<SystemManager> systemManager	
 	);
 
@@ -32,9 +32,11 @@ public:
 	void addComponent(Entity entity, ComponentType component);
 
 	template <typename ComponentType>
-	void removeComponent(Entity entity);
+	ComponentType& getComponent(Entity entity);
 
 	template <typename ComponentType>
-	ComponentType& getComponent(Entity entity);
+	void removeComponent(Entity entity);
+
+	void removeAllComponents(Entity entity);
 };
 
