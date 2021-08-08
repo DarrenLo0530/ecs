@@ -3,18 +3,22 @@
 #include "Component.h"
 #include <iostream>
 
-struct Health : public Component<Health> {
-	int currentHealth;
-};
+#include "World.h"
 
-struct Transform : public Component<Transform> {
+class Transform : public Component<Transform> {
+public:
 	int x, y, z;
 };
 
+
 int main() {
-	Window* window = new Window("Mover", 1920, 1080);
-	Game* mover = new Mover();
-	Health h{};
-	std::cout << "Health family: " << h.id() << std::endl;
-	std::cout << "Transform family: " << getComponentId<Transform>() << std::endl;
+	World* world = new World();
+
+	Transform t = Transform();
+	t.x = 3;
+	t.y = 2;
+	t.z = -1;
+
+	EntityHandle e = world->createEntity();
+
 }

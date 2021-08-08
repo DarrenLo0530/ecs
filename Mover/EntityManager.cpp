@@ -1,11 +1,11 @@
 #include "EntityManager.h"
 
 EntityManager::EntityManager() {
+	numLivingEntities = 0;
+
 	for (Entity e = 0; e < MAX_ENTITIES; e++) {
 		availableEntities.push(e);
 	}
-
-	numAvailableEntities = 0;
 }
 
 Entity EntityManager::createEntity() {
@@ -13,8 +13,9 @@ Entity EntityManager::createEntity() {
 	Entity entity = availableEntities.front();
 	availableEntities.pop();
 
+	entitySignatures[entity].reset();
 
-	numAvailableEntities++;
+	numLivingEntities++;
 
 	return entity;
 }
@@ -23,9 +24,7 @@ void EntityManager::destroyEntity(Entity entity) {
 	// Make entity id available again
 	availableEntities.push(entity);
 
-	// Reset signature of entity
-	entitySignatures[entity].reset();
-	numAvailableEntities--;
+	numLivingEntities--;
 }
 
 void EntityManager::setSignature(Entity entity, const Signature& signature) {
@@ -37,7 +36,7 @@ void EntityManager::setSignatureBit(Entity entity, int bit, bool val) {
 	signature.set(bit, val);
 }
 
-Signature EntityManager::getSignature(Entity entity) const {
+const Signature& EntityManager::getSignature(Entity entity) const {
 	return entitySignatures[entity];	
 }
 

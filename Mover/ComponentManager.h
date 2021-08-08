@@ -13,22 +13,33 @@ private:
 
 		// Initialize a new componnt array if first time component is added
 		if (componentArrayMap.find(componentTypeName) == componentArrayMap.end()) {
-			componentArrayMap[componentTypeName] = std::make_shared(ComponentArray<ComponentType>);
+			componentArrayMap[componentTypeName] = std::make_shared<ComponentArray<ComponentType>>();
 		}
 
 		return std::static_pointer_cast<ComponentArray<ComponentType>>(componentArrayMap[componentTypeName]);
 	}
 
 public:
+	template <typename ComponentType>
+	void addComponent(Entity entity, ComponentType component) {
+		getComponentArray<ComponentType>()->addEntityComponent(entity, component);
+	}
 
 	template <typename ComponentType>
-	void addComponent(Entity entity, ComponentType component);
+	void removeComponent(Entity entity) {
+		getComponentArray<ComponentType>()->removeEntityComponent(entity);
+	}
 
-	template <typename ComponentType>
-	void removeComponent(Entity entity);
+	template<typename ComponentType>
+	ComponentType& getComponent(Entity entity) {
+		return getComponentArray<ComponentType>()->getComponent(entity);
+	}
 
-	template <typename ComponentType>
-	ComponentType& getComponent(Entity entity);
-
-	void removeEntity(Entity entity);
+	void removeEntity(Entity entity) {
+		for (auto const& pair : componentArrayMap) {
+			auto const& componentArray = pair.second;
+			componentArray->removeEntityComponent(entity);
+		}
+	}
 };
+

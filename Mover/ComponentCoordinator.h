@@ -7,7 +7,6 @@
 #include "EntityManager.h"
 
 
-
 /*
 * Coordinates the addition and removal of components from an entity
 * 
@@ -15,6 +14,7 @@
 * ComponentManager is responsible for updating the entity's components
 * SystemManager is responsible for updating the entity's recorded in each system
 */
+
 
 class ComponentCoordinator {
 private:
@@ -25,18 +25,43 @@ public:
 	ComponentCoordinator(
 		std::shared_ptr<ComponentManager> componentManager,
 		std::shared_ptr<EntityManager> entityManager,
-		std::shared_ptr<SystemManager> systemManager	
-	);
+		std::shared_ptr<SystemManager> systemManager
+	) {
+		this->entityManager = entityManager;
+		this->componentManager = componentManager;
+		this->systemManager = systemManager;
+	}
+
 
 	template <typename ComponentType>
-	void addComponent(Entity entity, ComponentType component);
+	void addComponent(Entity entity, ComponentType component) {
+		componentManager->addComponent(entity, entity);
+
+		ComponentId componentId = getComponentId<ComponentType>();
+		entityManager->setSignatureBit(entity, componentId, true);
+
+		systemManager->entitySignatureChange(entity, entityManager->getSignature(entity));
+	}
 
 	template <typename ComponentType>
-	ComponentType& getComponent(Entity entity);
+	ComponentType& getComponent(Entity entity) {
+		return componentManager->getComponent(entity);
+	}
 
 	template <typename ComponentType>
-	void removeComponent(Entity entity);
+	void removeComponent(Entity entity) {
+		componentManager->removeComponent<ComponentType>(entity);
 
-	void removeAllComponents(Entity entity);
+		ComponentId componentId = getComponentId<ComponentType>();
+		entityManager->setSignatureBit(entity, componentId, false);
+
+		systemManager->entitySignatureChange(entity, entityManager->getSignature(entity));
+	}
+
+	void removeAllComponents(Entity entity) {
+		// Do not destroy entity from entity manager since we only want to delete association with components
+		componentManager->removeEntity(entity);
+		systemManager->removeEntity(entity);
+	}
 };
 

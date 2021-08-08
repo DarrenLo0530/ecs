@@ -9,13 +9,13 @@ class EntityManager {
 private:
 	std::queue<Entity> availableEntities;
 	std::array<Signature, MAX_ENTITIES> entitySignatures;
-	unsigned int numAvailableEntities;
+	unsigned int numLivingEntities;
 public:
 	EntityManager();
 	Entity createEntity();
 	void destroyEntity(Entity entity);
 	void setSignature(Entity entity, const Signature& signature);
 	void setSignatureBit(Entity entity, int bit, bool val);
-	Signature getSignature(Entity entity) const;
+	const Signature& getSignature(Entity entity) const;
 };
 

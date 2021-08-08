@@ -22,9 +22,6 @@
     <Filter Include="Header Files\ecs\components">
       <UniqueIdentifier>{07fb4634-0818-4570-b4a3-15d292984eec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ecs\components">
-      <UniqueIdentifier>{18d2b99c-6e2f-4ff5-a7bf-5ba658d4bd68}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ecs\systems">
       <UniqueIdentifier>{193344f1-eac0-455a-83d2-91606a37c11f}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,9 @@
     </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{57aea4c0-b21b-451f-ba03-4a566244107f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ecs\components">
+      <UniqueIdentifier>{1886ed8c-3cbe-4641-ae46-4b738ab6a61b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,23 +51,8 @@
     <ClCompile Include="EntityManager.cpp">
       <Filter>Source Files\ecs</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentArray.cpp">
-      <Filter>Source Files\ecs\components</Filter>
-    </ClCompile>
-    <ClCompile Include="ComponentManager.cpp">
-      <Filter>Source Files\ecs\components</Filter>
-    </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemManager.cpp">
-      <Filter>Source Files\ecs\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="ComponentCoordinator.cpp">
-      <Filter>Source Files\ecs</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityHandle.cpp">
-      <Filter>Source Files\ecs</Filter>
     </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Source Files\ecs\systems</Filter>
@@ -77,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentManager.cpp">
+      <Filter>Source Files\ecs\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,9 +104,6 @@
     <ClInclude Include="SystemManager.h">
       <Filter>Header Files\ecs\systems</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentCoordinator.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
     <ClInclude Include="World.h">
       <Filter>Header Files\ecs</Filter>
     </ClInclude>
@@ -127,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentCoordinator.h">
+      <Filter>Header Files\ecs\components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
