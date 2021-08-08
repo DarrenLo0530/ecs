@@ -13,108 +13,120 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\ecs">
+    <Filter Include="Header Files\game">
+      <UniqueIdentifier>{5e46b607-16bc-4b02-b624-b9b409654d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\engine">
+      <UniqueIdentifier>{dd1e910f-95fc-474e-bc42-b481c03de621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\engine\ecs">
       <UniqueIdentifier>{49631fdb-b2f7-47d0-9934-388e91a9fa5c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ecs">
-      <UniqueIdentifier>{f68391d1-0a5d-4cf8-ac53-dd6ae244cf7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ecs\components">
+    <Filter Include="Header Files\engine\ecs\components">
       <UniqueIdentifier>{07fb4634-0818-4570-b4a3-15d292984eec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ecs\systems">
+    <Filter Include="Header Files\engine\ecs\systems">
       <UniqueIdentifier>{193344f1-eac0-455a-83d2-91606a37c11f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ecs\systems">
-      <UniqueIdentifier>{82c7041c-6423-45c0-9e1d-e8380feb803e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics">
+    <Filter Include="Header Files\engine\graphics">
       <UniqueIdentifier>{8b93e93f-3faa-4a5a-b885-f6441a0cf9a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics">
+    <Filter Include="Source Files\engine">
+      <UniqueIdentifier>{6af1af00-b2a9-46f8-a2c7-b4ea0536c335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game">
+      <UniqueIdentifier>{50307c3f-0443-470b-8245-d90f69a4aee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\engine\graphics">
       <UniqueIdentifier>{57aea4c0-b21b-451f-ba03-4a566244107f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ecs\components">
+    <Filter Include="Source Files\engine\ecs">
+      <UniqueIdentifier>{f68391d1-0a5d-4cf8-ac53-dd6ae244cf7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\engine\ecs\systems">
+      <UniqueIdentifier>{82c7041c-6423-45c0-9e1d-e8380feb803e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\engine\ecs\components">
       <UniqueIdentifier>{1886ed8c-3cbe-4641-ae46-4b738ab6a61b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mover.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EntityManager.cpp">
-      <Filter>Source Files\ecs</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\engine\ecs</Filter>
     </ClCompile>
     <ClCompile Include="System.cpp">
-      <Filter>Source Files\ecs\systems</Filter>
+      <Filter>Source Files\engine\ecs\systems</Filter>
     </ClCompile>
     <ClCompile Include="World.cpp">
-      <Filter>Source Files\ecs</Filter>
+      <Filter>Source Files\engine\ecs</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\graphics</Filter>
+      <Filter>Source Files\engine\graphics</Filter>
     </ClCompile>
     <ClCompile Include="ComponentManager.cpp">
-      <Filter>Source Files\ecs\components</Filter>
+      <Filter>Source Files\engine\ecs\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Mover.cpp">
+      <Filter>Source Files\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Header Files\ecs\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Mover.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
     <ClInclude Include="EntityManager.h">
-      <Filter>Header Files\ecs</Filter>
+      <Filter>Header Files\engine\ecs</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Header Files\ecs</Filter>
+      <Filter>Header Files\engine\ecs</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Header Files\ecs\components</Filter>
+      <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
     <ClInclude Include="ComponentArray.h">
-      <Filter>Header Files\ecs\components</Filter>
+      <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
     <ClInclude Include="ComponentManager.h">
-      <Filter>Header Files\ecs\components</Filter>
+      <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
     <ClInclude Include="System.h">
-      <Filter>Header Files\ecs\systems</Filter>
+      <Filter>Header Files\engine\ecs\systems</Filter>
     </ClInclude>
     <ClInclude Include="SystemManager.h">
-      <Filter>Header Files\ecs\systems</Filter>
+      <Filter>Header Files\engine\ecs\systems</Filter>
     </ClInclude>
     <ClInclude Include="World.h">
-      <Filter>Header Files\ecs</Filter>
+      <Filter>Header Files\engine\ecs</Filter>
     </ClInclude>
     <ClInclude Include="EntityHandle.h">
-      <Filter>Header Files\ecs</Filter>
+      <Filter>Header Files\engine\ecs</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Header Files\graphics</Filter>
+      <Filter>Header Files\engine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="ComponentCoordinator.h">
-      <Filter>Header Files\ecs\components</Filter>
+      <Filter>Header Files\engine\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mover.h">
+      <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

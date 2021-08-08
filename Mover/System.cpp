@@ -1,6 +1,6 @@
 #include "System.h"
 
-System::System(Signature& signature) {
+System::System(const Signature& signature) {
 	this->signature = signature;
 }
 void System::addEntity(Entity entity) {

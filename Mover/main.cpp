@@ -20,5 +20,8 @@ int main() {
 	t.z = -1;
 
 	EntityHandle e = world->createEntity();
+	e.addComponent(t);
+	e.removeComponent<Transform>();
 
+	std::cout << e.getComponent<Transform>().x;
 }

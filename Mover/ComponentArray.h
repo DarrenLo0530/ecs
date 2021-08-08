@@ -20,14 +20,15 @@ private:
 	std::unordered_map<Entity, int> entityToIndexMap;
 	std::unordered_map<int, Entity> indexToEntityMap;
 public:
-	void addEntityComponent(Entity entity, ComponentType component) {
+	void addEntityComponent(Entity entity, const ComponentType& component) {
 		assert(entityToIndexMap.find(entity) == entityToIndexMap.end() && "Component already added");
 
 		int componentIndex = size;
 		entityToIndexMap[entity] = componentIndex;
 		indexToEntityMap[componentIndex] = entity;
-
 		componentArray[componentIndex] = component;
+
+		size++;
 	}
 
 	void removeEntityComponent(Entity entity) override {
@@ -49,7 +50,10 @@ public:
 		}
 	}
 
-	ComponentType& getComponent(Entity entity) const {
+
+	ComponentType& getComponent(Entity entity) {
+		assert(entityToIndexMap.find(entity) != entityToIndexMap.end() && "Retrieving non-existent component.");
+
 		return componentArray[entityToIndexMap[entity]];
 	}
 };

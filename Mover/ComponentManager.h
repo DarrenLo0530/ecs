@@ -21,21 +21,21 @@ private:
 
 public:
 	template <typename ComponentType>
-	void addComponent(Entity entity, ComponentType component) {
+	void addComponent(const Entity& entity, const ComponentType& component) {
 		getComponentArray<ComponentType>()->addEntityComponent(entity, component);
 	}
 
 	template <typename ComponentType>
-	void removeComponent(Entity entity) {
+	void removeComponent(const Entity& entity) {
 		getComponentArray<ComponentType>()->removeEntityComponent(entity);
 	}
 
 	template<typename ComponentType>
-	ComponentType& getComponent(Entity entity) {
+	ComponentType& getComponent(const Entity& entity) {
 		return getComponentArray<ComponentType>()->getComponent(entity);
 	}
 
-	void removeEntity(Entity entity) {
+	void removeEntity(const Entity& entity) {
 		for (auto const& pair : componentArrayMap) {
 			auto const& componentArray = pair.second;
 			componentArray->removeEntityComponent(entity);

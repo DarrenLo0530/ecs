@@ -34,8 +34,8 @@ public:
 
 
 	template <typename ComponentType>
-	void addComponent(Entity entity, ComponentType component) {
-		componentManager->addComponent(entity, entity);
+	void addComponent(Entity entity, const ComponentType& component) {
+		componentManager->addComponent(entity, component);
 
 		ComponentId componentId = getComponentId<ComponentType>();
 		entityManager->setSignatureBit(entity, componentId, true);
@@ -45,7 +45,7 @@ public:
 
 	template <typename ComponentType>
 	ComponentType& getComponent(Entity entity) {
-		return componentManager->getComponent(entity);
+		return componentManager->getComponent<ComponentType>(entity);
 	}
 
 	template <typename ComponentType>

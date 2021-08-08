@@ -12,7 +12,7 @@ public:
 	}
 
 	template <typename ComponentType>
-	void addComponent(ComponentType component) {
+	void addComponent(const ComponentType& component) {
 		componentCoordinator->addComponent(id, component);
 	}
 
@@ -22,8 +22,8 @@ public:
 	}
 
 	template <typename ComponentType>
-	void getComponent() {
-		componentCoordinator->getComponent<ComponentType>(id);
+	ComponentType& getComponent() {
+		return componentCoordinator->getComponent<ComponentType>(id);
 	}
 
 	Entity getId() const {
