@@ -46,8 +46,17 @@
     <Filter Include="Source Files\engine\ecs\systems">
       <UniqueIdentifier>{82c7041c-6423-45c0-9e1d-e8380feb803e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\engine\ecs\components">
-      <UniqueIdentifier>{1886ed8c-3cbe-4641-ae46-4b738ab6a61b}</UniqueIdentifier>
+    <Filter Include="Header Files\game\systems">
+      <UniqueIdentifier>{58731660-923b-4d7f-a18d-ce4a27ba32f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\engine\ecs\events">
+      <UniqueIdentifier>{89cbb294-6062-4655-b008-e204c44b1ca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\components">
+      <UniqueIdentifier>{6fed27a3-e35e-4c0b-ad2d-c83b8fee3a25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\engine\components">
+      <UniqueIdentifier>{6ba119be-3e92-4a75-909a-cc158f528183}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,9 +72,6 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\engine\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentManager.cpp">
-      <Filter>Source Files\engine\ecs\components</Filter>
-    </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
@@ -78,11 +84,11 @@
     <ClCompile Include="Mover.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files\engine\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files\engine\ecs\components</Filter>
-    </ClInclude>
     <ClInclude Include="EntityManager.h">
       <Filter>Header Files\engine\ecs</Filter>
     </ClInclude>
@@ -113,9 +119,6 @@
     <ClInclude Include="Shader.h">
       <Filter>Header Files\engine\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentCoordinator.h">
-      <Filter>Header Files\engine\ecs\components</Filter>
-    </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
@@ -127,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="Mover.h">
       <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\game\components</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstMovementSystem.h">
+      <Filter>Header Files\game\systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

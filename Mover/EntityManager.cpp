@@ -3,7 +3,7 @@
 EntityManager::EntityManager() {
 	numLivingEntities = 0;
 
-	for (Entity e = 0; e < MAX_ENTITIES; e++) {
+	for (Entity e = 1; e < MAX_ENTITIES; e++) {
 		availableEntities.push(e);
 	}
 }

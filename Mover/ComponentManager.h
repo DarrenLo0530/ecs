@@ -21,7 +21,8 @@ private:
 
 public:
 	template <typename ComponentType>
-	void addComponent(const Entity& entity, const ComponentType& component) {
+	void addComponent(const Entity& entity, ComponentType& component) {
+
 		getComponentArray<ComponentType>()->addEntityComponent(entity, component);
 	}
 

@@ -10,8 +10,6 @@ class SystemManager {
 private:
 	std::unordered_map<const char*, std::shared_ptr<System>> systems;
 public:
-#include "SystemManager.h"
-
 	template <typename SystemType>
 	std::shared_ptr<SystemType> registerSystem() {
 		const char* systemTypeName = typeid(SystemType).name();
@@ -38,6 +36,13 @@ public:
 				system->removeEntity(entity);
 			}
 
+		}
+	}
+
+	void update() {
+		for (auto const& p : systems) {
+			auto& system = p.second;
+			system->update();
 		}
 	}
 };

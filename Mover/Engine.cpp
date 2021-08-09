@@ -34,7 +34,7 @@ void Engine::run() {
 		while (accumulator >= secondsPerUpdate) {
 			// Update game logic in a fixed time step
 			accumulator -= secondsPerUpdate;
-			//game->update();
+			game->update();
 		}
 
 		// Calculate fps
