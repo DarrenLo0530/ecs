@@ -11,6 +11,7 @@ private:
 	std::shared_ptr<EntityManager> entityManager;
 	std::shared_ptr<ComponentManager> componentManager;
 	std::shared_ptr<SystemManager> systemManager;
+	std::shared_ptr<EventManager> eventManager;
 
 public:
 	World();
@@ -24,7 +25,8 @@ public:
 	std::shared_ptr<SystemType> registerSystem() {
 		auto system = systemManager->registerSystem<SystemType>();
 		system->setParentWorld(this);
-
+		system->setEventManager(eventManager);
+		system->init();
 		return system;
 	}
 

@@ -7,12 +7,13 @@
 #include "Transform.h"
 #include "ConstMovementSystem.h"
 #include "EntityHandle.h"
+#include "ListenerSystem.h"
 
 int main() {
 	World* world = new World();
 
 	world->registerSystem<ConstMovementSystem>();
-
+	world->registerSystem<ListenerSystem>();
 
 	Transform t = Transform();
 	t.p = 0;
@@ -26,6 +27,5 @@ int main() {
 	while (true) {
 		world->update();
 	}
-
 
 }

@@ -1,30 +1,25 @@
-#include "World.h"
 #include "System.h"
 #include "EntityHandle.h"
+
 #include <iostream>
+
 void System::addEntity(Entity entity) {
-	entities.insert(entity);
+	entities.insert(EntityHandle(entity, parentWorld));
 }
 
 void System::removeEntity(Entity entity) {
-	entities.erase(entity);
+	entities.erase(EntityHandle(entity, NULL));
 }
 
-const Signature& System::getSignature() {
+const Signature& System::getSignature() const {
 	return signature;
 }
 
-std::vector<EntityHandle> System::getEntities() {
-	std::vector<EntityHandle> entityHandles;
-	entityHandles.reserve(entities.size());
-
-	for (auto& entity : entities) {
-		entityHandles.push_back(EntityHandle(entity, parentWorld));
-	}
-
-	return entityHandles;
-}
 
 void System::setParentWorld(World* parentWorld) {
 	this->parentWorld = parentWorld;
+}
+
+void System::setEventManager(std::shared_ptr<EventManager> eventManager) {
+	this->eventManager = eventManager;
 }

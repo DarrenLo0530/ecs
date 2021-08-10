@@ -5,6 +5,7 @@ World::World() {
 	componentManager = std::make_shared<ComponentManager>();
 	entityManager    = std::make_shared<EntityManager>();
 	systemManager    = std::make_shared<SystemManager>();
+	eventManager	 = std::make_shared<EventManager>();
 
 }
 

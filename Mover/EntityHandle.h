@@ -18,7 +18,7 @@ public:
 		this->parentWorld = parentWorld;
 	}
 
-	~EntityHandle() = default;
+	virtual ~EntityHandle() = default;
 
 	template <typename ComponentType>
 	void addComponent(ComponentType& component) {
@@ -37,6 +37,10 @@ public:
 
 	Entity getId() const {
 		return id;
+	}
+
+	bool operator<(const EntityHandle& other) const {
+		return id < other.id;
 	}
 
 };

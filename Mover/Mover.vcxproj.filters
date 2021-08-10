@@ -58,6 +58,9 @@
     <Filter Include="Source Files\engine\components">
       <UniqueIdentifier>{6ba119be-3e92-4a75-909a-cc158f528183}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\game\events">
+      <UniqueIdentifier>{94502e89-c66d-433b-9652-6338534fe81a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityManager.cpp">
@@ -135,6 +138,21 @@
       <Filter>Header Files\game\components</Filter>
     </ClInclude>
     <ClInclude Include="ConstMovementSystem.h">
+      <Filter>Header Files\game\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Header Files\engine\ecs\events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\engine\ecs\events</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files\engine\ecs\events</Filter>
+    </ClInclude>
+    <ClInclude Include="TestEvent.h">
+      <Filter>Header Files\game\events</Filter>
+    </ClInclude>
+    <ClInclude Include="ListenerSystem.h">
       <Filter>Header Files\game\systems</Filter>
     </ClInclude>
   </ItemGroup>
