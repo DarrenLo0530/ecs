@@ -1,8 +1,19 @@
 #pragma once
 
 #include "Shader.h"
+#include "Model.h"
 
-class Renderer {
-public:
-	void draw(unsigned int vao, Shader& shader);
+namespace Renderer {
+	void renderModel(const Model& model, const Shader& shader) {
+		shader.use();	
+
+		for(const Mesh& mesh : model.meshes) {
+			renderMesh(mesh);
+		}
+	}
+
+
+	void renderMesh(const Mesh& mesh) {
+		glDrawElements(GL_EL)
+	}
 };

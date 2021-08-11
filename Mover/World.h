@@ -22,10 +22,18 @@ public:
 
 	// Systems
 	template <typename SystemType>
-	std::shared_ptr<SystemType> registerSystem() {
-		auto system = systemManager->registerSystem<SystemType>();
+	std::shared_ptr<SystemType> registerUpdateSystem() {
+		auto system = systemManager->registerUpdateSystem<SystemType>();
 		system->setParentWorld(this);
 		system->setEventManager(eventManager);
+		system->init();
+		return system;
+	}
+
+	template <typename SystemType>
+	std::shared_ptr<SystemType> registerRenderSystem() {
+		auto system = systemManager->registerRenderSystem<SystemType>();
+		system->setParentWorld(this);
 		system->init();
 		return system;
 	}
@@ -63,6 +71,4 @@ public:
 
 	void update();
 	void render() const;
-
-
 };

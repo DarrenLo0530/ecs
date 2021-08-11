@@ -12,8 +12,8 @@
 int main() {
 	World* world = new World();
 
-	world->registerSystem<ConstMovementSystem>();
-	world->registerSystem<ListenerSystem>();
+	world->registerUpdateSystem<ConstMovementSystem>();
+	world->registerUpdateSystem<ListenerSystem>();
 
 	Transform t = Transform();
 	t.p = 0;

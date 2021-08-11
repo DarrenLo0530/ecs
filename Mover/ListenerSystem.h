@@ -3,7 +3,7 @@
 #include "System.h"
 #include "TestEvent.h"
 
-class ListenerSystem : public System {
+class ListenerSystem : public UpdateSystem {
 public:
 	void init() override {
 		eventManager->subscribe(this, &ListenerSystem::listenerEvent);

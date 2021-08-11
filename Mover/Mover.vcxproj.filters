@@ -93,12 +93,6 @@
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\engine\components</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\engine\components</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EntityManager.h">
@@ -173,8 +167,11 @@
     <ClInclude Include="Model.h">
       <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files\engine\ecs\components</Filter>
+    <ClInclude Include="ModelLoader.h">
+      <Filter>Header Files\engine\ecs\loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Header Files\engine\ecs\loaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,23 +3,25 @@
 
 #include <iostream>
 
-void System::addEntity(Entity entity) {
+void BaseSystem::addEntity(Entity entity) {
 	entities.insert(EntityHandle(entity, parentWorld));
 }
 
-void System::removeEntity(Entity entity) {
+void BaseSystem::removeEntity(Entity entity) {
 	entities.erase(EntityHandle(entity, NULL));
 }
 
-const Signature& System::getSignature() const {
+const Signature& BaseSystem::getSignature() const {
 	return signature;
 }
 
 
-void System::setParentWorld(World* parentWorld) {
+void BaseSystem::setParentWorld(World* parentWorld) {
 	this->parentWorld = parentWorld;
 }
 
-void System::setEventManager(std::shared_ptr<EventManager> eventManager) {
+void UpdateSystem::setEventManager(std::shared_ptr<EventManager> eventManager) {
 	this->eventManager = eventManager;
 }
+
+

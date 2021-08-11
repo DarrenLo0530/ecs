@@ -8,31 +8,39 @@
 class World;
 class EntityHandle;
 
-class System {
+class BaseSystem {
 protected:
 	Signature signature;
 	World* parentWorld = nullptr;
-	std::shared_ptr<EventManager> eventManager = nullptr;
 
 	std::set<EntityHandle> entities;
 public:
-	System() = default;
-	virtual ~System() = default;
+	BaseSystem() = default;
+	virtual ~BaseSystem() = default;
 
 	void addEntity(Entity entity);
 	void removeEntity(Entity entity);
 	const Signature& getSignature() const;
 
 	void setParentWorld(World* world);
-	void setEventManager(std::shared_ptr<EventManager> eventManager);
 
 	template <typename ComponentType>
 	void registerComponent() {
 		signature.set(getComponentId<ComponentType>());
 	}
 
-	virtual void init() = 0;
-	virtual void update() = 0;
-	
+	virtual void init() = 0;	
 };
 
+class UpdateSystem : public BaseSystem {
+protected:
+	std::shared_ptr<EventManager> eventManager = nullptr;
+public:
+	void setEventManager(std::shared_ptr<EventManager> eventManager);
+	virtual void update() = 0;
+};
+
+class RenderSystem : public BaseSystem {
+public:
+	virtual void render() = 0;
+};

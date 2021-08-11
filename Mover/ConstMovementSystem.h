@@ -6,7 +6,7 @@
 #include "Transform.h"
 #include "TestEvent.h"
 
-class ConstMovementSystem : public System {
+class ConstMovementSystem : public UpdateSystem {
 public:
 	void init() override {
 		registerComponent<Transform>();
