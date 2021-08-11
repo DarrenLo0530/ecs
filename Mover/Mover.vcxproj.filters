@@ -61,6 +61,9 @@
     <Filter Include="Header Files\game\events">
       <UniqueIdentifier>{94502e89-c66d-433b-9652-6338534fe81a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\engine\ecs\loaders">
+      <UniqueIdentifier>{92efbccb-a172-4411-8dee-56cfc0f7564a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityManager.cpp">
@@ -88,6 +91,12 @@
       <Filter>Source Files\game</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
+      <Filter>Source Files\engine\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files\engine\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
       <Filter>Source Files\engine\components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -154,6 +163,18 @@
     </ClInclude>
     <ClInclude Include="ListenerSystem.h">
       <Filter>Header Files\game\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\engine\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files\engine\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\engine\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
