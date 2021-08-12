@@ -3,8 +3,8 @@
 #include "Window.h"
 
 Window::Window(const std::string& title, unsigned int width, unsigned int height) {
-	this->width = width;
-	this->height = height;
+	this->dimensions.width = width;
+	this->dimensions.height = height;
 
 	// Initialize GLFW
 	glfwInit();
@@ -57,24 +57,27 @@ bool Window::isClosed()  const {
 
 /* Getters and setters */
 unsigned int Window::getWidth() const {
-	return width;
+	return dimensions.width;
 }
 
 unsigned int Window::getHeight() const {
-	return height;
+	return dimensions.height;
 }
 
 const Window::Input& Window::getInputs() const {
 	return inputs;
 }
 
+const Window::Dimensions& Window::getDimensions() const {
+	return dimensions;
+}
 // Callbacks
 
 
 void Window::framebuffer_size_callback(GLFWwindow* id, int width, int height) {
 	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
-	window->height = height;
-	window->width = width;
+	window->dimensions.height = height;
+	window->dimensions.width = width;
 	glViewport(0, 0, width, height);
 }
 

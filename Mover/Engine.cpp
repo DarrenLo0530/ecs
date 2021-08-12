@@ -17,7 +17,8 @@ Engine::Engine(Window* window, Game* game) {
 	this->window = window;
 	this->game = game;
 
-	game->setInputs(&(window->getInputs()));
+	game->setWindow(*window);
+
 }
 
 void Engine::run() {

@@ -64,6 +64,12 @@
     <Filter Include="Header Files\engine\ecs\loaders">
       <UniqueIdentifier>{92efbccb-a172-4411-8dee-56cfc0f7564a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{286e3fde-cad8-450d-a808-9b449816ed03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\engine\systems">
+      <UniqueIdentifier>{1095122f-a26e-4c0c-a716-e9bcd869389f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityManager.cpp">
@@ -92,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\engine\components</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicRenderSystem.cpp">
+      <Filter>Source Files\engine\systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,9 +146,6 @@
     <ClInclude Include="Mover.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files\game\components</Filter>
-    </ClInclude>
     <ClInclude Include="ConstMovementSystem.h">
       <Filter>Header Files\game\systems</Filter>
     </ClInclude>
@@ -173,5 +179,25 @@
     <ClInclude Include="TextureLoader.h">
       <Filter>Header Files\engine\ecs\loaders</Filter>
     </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\engine\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicRendererSystem.h">
+      <Filter>Header Files\engine\ecs\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Header Files\engine\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\engine\ecs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basicShader.vert">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="basicShader.frag">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -16,7 +16,6 @@ int main() {
 	world->registerUpdateSystem<ListenerSystem>();
 
 	Transform t = Transform();
-	t.p = 0;
 	t.position.x = 3;
 	t.position.y = 2;
 	t.position.z = -1;

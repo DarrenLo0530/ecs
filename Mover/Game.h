@@ -5,6 +5,7 @@
 class Game {
 protected:
 	const Window::Input* inputs = NULL;
+	const Window::Dimensions* dimensions;
 public:
 	virtual ~Game() = default;
 
@@ -14,8 +15,10 @@ public:
 	// Render the game
 	virtual void render(float interpolation) = 0;
 
-	void setInputs(const Window::Input* inputs) {
-		this->inputs = inputs;
+	void setWindow(const Window& window) {
+		this->inputs = &(window.getInputs());
+		this->dimensions = &(window.getDimensions());
 	}
+
 };
 

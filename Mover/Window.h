@@ -16,11 +16,14 @@ public:
 		bool pressedKeys[MAX_KEYS];
 		bool pressedMouseButtons[MAX_MOUSE_BUTTONS];
 	};
+
+	struct Dimensions {
+		unsigned int width;
+		unsigned int height;
+	};
 private:
 	GLFWwindow* id;
-	unsigned int width;
-	unsigned int height;
-
+	Dimensions dimensions;
 	Input inputs{};
 public:
 	Window(const std::string& title, unsigned int width, unsigned int height);
@@ -34,6 +37,7 @@ public:
 	unsigned int getHeight() const;
 
 	const Input& getInputs() const;
+	const Dimensions& getDimensions() const;
 private:
 	static void framebuffer_size_callback(GLFWwindow* id, int width, int height);
 	static void key_callback(GLFWwindow* id, int key, int scancode, int action, int mods);

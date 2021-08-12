@@ -21,17 +21,17 @@ public:
 	virtual ~EntityHandle() = default;
 
 	template <typename ComponentType>
-	void addComponent(ComponentType& component) {
+	void addComponent(ComponentType& component) const {
 		parentWorld->addComponent(id, component);
 	}
 
 	template <typename ComponentType>
-	void removeComponent() {
+	void removeComponent() const {
 		parentWorld->removeComponent<ComponentType>(id);
 	}
 
 	template <typename ComponentType>
-	ComponentType& getComponent() {
+	ComponentType& getComponent() const {
 		return parentWorld->getComponent<ComponentType>(id);
 	}
 

@@ -6,5 +6,5 @@
 struct TestEvent : public Event {
 public:
 	EntityHandle entityA;
-	TestEvent(EntityHandle& a) : entityA{ a } {}
+	TestEvent(const EntityHandle& a) : entityA{ a } {}
 };

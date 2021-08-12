@@ -13,7 +13,7 @@ public:
 	}
 
 	void update() override {
-		for (EntityHandle entity : entities) {
+		for (const auto& entity : entities) {
 			auto& t = entity.getComponent<Transform>();
 			t.position.x += 3;
 			eventManager->publish(new TestEvent(entity));
