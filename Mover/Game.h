@@ -1,13 +1,15 @@
 #pragma once
 
 #include "Window.h"
-
+#include <iostream>
 class Game {
-protected:
+public:
 	const Window::Input* inputs = NULL;
 	const Window::Dimensions* dimensions;
 public:
 	virtual ~Game() = default;
+
+	virtual void init() = 0;
 
 	// Update components (including input component for player)
 	virtual void update() = 0;

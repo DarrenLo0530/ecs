@@ -16,7 +16,6 @@ protected:
 	std::set<EntityHandle> entities;
 public:
 	BaseSystem() = default;
-	virtual ~BaseSystem() = default;
 
 	void addEntity(Entity entity);
 	void removeEntity(Entity entity);

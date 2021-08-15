@@ -1,5 +1,7 @@
 #pragma once
 #include "Component.h"
+#include "glm/glm.hpp"
+
 
 struct CameraComponent : public Component<CameraComponent> {
 	float FOV;
@@ -10,7 +12,7 @@ struct CameraComponent : public Component<CameraComponent> {
 
 	glm::vec3 worldUp;
 
-	CameraComponent() : front{ glm::vec3(0.0, 0.0, -1.0) }, worldUp { glm::vec3(0.0, 1.0, 0.0) } {
+	CameraComponent() : FOV(90.0f), front{ glm::vec3(0.0, 0.0, -1.0) }, worldUp { glm::vec3(0.0, 1.0, 0.0) } {
 		updateVectors();
 	}
 
@@ -18,7 +20,6 @@ struct CameraComponent : public Component<CameraComponent> {
 		front = glm::normalize(front);
 		right = glm::normalize(glm::cross(front, worldUp));
 		up = glm::normalize(glm::cross(right, front));
-
 	}
 
 };

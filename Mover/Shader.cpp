@@ -3,6 +3,7 @@
 
 Shader::Shader(const char* vShaderPath, const char* fShaderPath) {
 	// Creating shader program
+
 	ID = glCreateProgram();
 
 	attachShader(vShaderPath, GL_VERTEX_SHADER);

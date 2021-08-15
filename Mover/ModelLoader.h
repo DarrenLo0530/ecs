@@ -11,19 +11,24 @@
 #include <stb_image.h>
 
 namespace ModelLoader {
+	Model loadModel(std::string path);
+	void processNode(aiNode* node, const aiScene* scene);
+	Mesh processMesh(aiMesh* mesh, const aiScene* scene);
+	std::vector<Texture> loadMaterialTextures(aiMaterial* material, aiTextureType textureType);
+
 	std::string directory;
 	std::vector<Mesh> meshes;
-	std::vector<Texture> textures;
 
 	Model loadModel(std::string path) {
+		meshes.clear();
+
 		// Import scene
 		Assimp::Importer importer;
 		const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 			// Scene was not loaded in properly
-			std::cout << "Error while loading model with Assimp. " << importer.GetErrorString() << std::endl;
-			return;
+			throw importer.GetErrorString();
 		}
 
 		// Get prefix of file path
@@ -34,7 +39,6 @@ namespace ModelLoader {
 
 		Model model = {};
 		model.meshes = meshes;
-		model.textures = textures;
 
 		return model;
 	}

@@ -18,8 +18,6 @@ public:
 		this->parentWorld = parentWorld;
 	}
 
-	virtual ~EntityHandle() = default;
-
 	template <typename ComponentType>
 	void addComponent(ComponentType& component) const {
 		parentWorld->addComponent(id, component);

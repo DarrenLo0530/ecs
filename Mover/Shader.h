@@ -12,8 +12,10 @@
 
 class Shader {
 public:
-	bool linked;
+	bool linked = false;
 	unsigned int ID;
+
+	Shader() = default;
 
 	// Constructor
 	Shader(const char* vShaderPath, const char* fShaderPath);

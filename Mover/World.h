@@ -21,21 +21,21 @@ public:
 	void destroyEntity(EntityHandle entity);
 
 	// Systems
-	template <typename SystemType>
-	std::shared_ptr<SystemType> registerUpdateSystem() {
-		auto system = systemManager->registerUpdateSystem<SystemType>();
-		system->setParentWorld(this);
-		system->setEventManager(eventManager);
-		system->init();
-		return system;
+	template <typename SystemType, typename ... Args>
+	std::shared_ptr<SystemType> registerUpdateSystem(Args&& ... args) {
+		auto registeredSystem = systemManager->registerUpdateSystem<SystemType>(std::forward<Args>(args)...);
+		registeredSystem->setParentWorld(this);
+		registeredSystem->setEventManager(eventManager);
+		registeredSystem->init();
+		return registeredSystem;
 	}
 
-	template <typename SystemType>
-	std::shared_ptr<SystemType> registerRenderSystem() {
-		auto system = systemManager->registerRenderSystem<SystemType>();
-		system->setParentWorld(this);
-		system->init();
-		return system;
+	template <typename SystemType, typename... Args>
+	std::shared_ptr<SystemType> registerRenderSystem(Args&& ... args) {
+		auto registeredSystem = systemManager->registerRenderSystem<SystemType>(std::forward<Args>(args)...);
+		registeredSystem->setParentWorld(this);
+		registeredSystem->init();
+		return registeredSystem;
 	}
 
 	template <typename ComponentType>

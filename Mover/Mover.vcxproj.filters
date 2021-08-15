@@ -182,7 +182,7 @@
     <ClInclude Include="Transform.h">
       <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
-    <ClInclude Include="BasicRendererSystem.h">
+    <ClInclude Include="BasicRenderSystem.h">
       <Filter>Header Files\engine\ecs\systems</Filter>
     </ClInclude>
     <ClInclude Include="CameraComponent.h">
@@ -191,12 +191,15 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\engine\ecs</Filter>
     </ClInclude>
+    <ClInclude Include="ObserverMoveSystem.h">
+      <Filter>Header Files\engine\ecs\systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="basicShader.vert">
+    <None Include="shaders\basicShader.frag">
       <Filter>Resource Files\shaders</Filter>
     </None>
-    <None Include="basicShader.frag">
+    <None Include="shaders\basicShader.vert">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>

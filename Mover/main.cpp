@@ -9,22 +9,16 @@
 #include "EntityHandle.h"
 #include "ListenerSystem.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+
 int main() {
-	World* world = new World();
+	stbi_set_flip_vertically_on_load(true);
+	Window window = Window("Mover", 1920, 1080);
+	Mover mover = Mover();
 
-	world->registerUpdateSystem<ConstMovementSystem>();
-	world->registerUpdateSystem<ListenerSystem>();
+	Engine engine = Engine(&window, &mover);
 
-	Transform t = Transform();
-	t.position.x = 3;
-	t.position.y = 2;
-	t.position.z = -1;
-
-	EntityHandle e = world->createEntity();
-	e.addComponent(t);
-
-	while (true) {
-		world->update();
-	}
-
+	engine.run();
 }

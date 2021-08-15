@@ -18,7 +18,7 @@ Engine::Engine(Window* window, Game* game) {
 	this->game = game;
 
 	game->setWindow(*window);
-
+	game->init();
 }
 
 void Engine::run() {
@@ -43,7 +43,7 @@ void Engine::run() {
 
 		// Render the game with interpolation for variable frame rate
 		float renderInterpolation = (float)accumulator / (float) secondsPerUpdate;
-		//game->render(renderInterpolation);
+		game->render(renderInterpolation);
 		window->update();
 	}
 }

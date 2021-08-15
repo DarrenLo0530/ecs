@@ -151,7 +151,7 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BasicRendererSystem.h" />
+    <ClInclude Include="BasicRenderSystem.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="ComponentArray.h" />
@@ -171,6 +171,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Mover.h" />
+    <ClInclude Include="ObserverMoveSystem.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="System.h" />
@@ -182,8 +183,8 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="basicShader.frag" />
-    <None Include="basicShader.vert" />
+    <None Include="shaders\basicShader.frag" />
+    <None Include="shaders\basicShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

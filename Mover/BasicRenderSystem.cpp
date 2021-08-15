@@ -1,46 +1,82 @@
-#include "BasicRendererSystem.h"
+#include "BasicRenderSystem.h"
 #include "CameraComponent.h"
+#include "Renderer.h"
 
-void BasicRendererSystem::init() {
-		registerComponent<Model>();
-		registerComponent<Transform>();
 
-		basicShader = new Shader("basicShader.vert", "basicShader.frag");
+BasicRenderSystem::BasicRenderSystem(const EntityHandle* camera, const Window::Dimensions* windowDimensions) {
+	this->camera = camera;
+	this->windowDimensions = windowDimensions;
 }
 
-void BasicRendererSystem::render() {
+void BasicRenderSystem::init() {
+	registerComponent<Model>();
+	registerComponent<Transform>();
+
+	basicShader = Shader("shaders/basicShader.vert", "shaders/basicShader.frag");
+	basicShader.link();
+}
+
+float vertices[] = {
+	// first triangle
+	 0.5f,  0.5f, 0.0f,  // top right
+	 0.5f, -0.5f, 0.0f,  // bottom right
+	-0.5f,  0.5f, 0.0f,  // top left 
+};
+
+unsigned int VAO = 0;
+
+void BasicRenderSystem::render() {
+	unsigned int VBO;
+	if (!VAO) {
+		glGenVertexArrays(1, &VAO);
+		glBindVertexArray(VAO);
+		
+		glGenBuffers(1, &VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
+		glBindVertexArray(0);
+	}
+
+	basicShader.use();
 	for (const auto& entity : entities) {
 		auto& transform = entity.getComponent<Transform>();
 		auto& model = entity.getComponent<Model>();
 
 		glm::mat4 modelMat = glm::mat4(1.0);
-		glm::translate(modelMat, transform.position);
+		modelMat = glm::translate(modelMat, transform.position);
 		modelMat *= glm::mat4_cast(transform.rotation);
-		glm::scale(modelMat, transform.scale);
+		modelMat = glm::scale(modelMat, transform.scale);
 
-		basicShader->setMat4("model", modelMat);
+		basicShader.setMat4("model", modelMat);
 
-		basicShader->setMat4("view", getViewMat());
-		basicShader->setMat4("projection", getProjectionMat());
+		basicShader.setMat4("view", getViewMat());
+		basicShader.setMat4("projection", getProjectionMat());
 
-		Renderer::renderModel(model, *basicShader);
+		Renderer::renderModel(model, basicShader);
 	}
 }
 
-void BasicRendererSystem::setCamera(EntityHandle* camera) {
-	this->camera = camera;
-}
-
-glm::mat4 BasicRendererSystem::getViewMat() {
+glm::mat4 BasicRenderSystem::getViewMat() {
 	auto& cameraTransform = camera->getComponent<Transform>();
 	auto& cameraComponent = camera->getComponent<CameraComponent>();
 
 	return glm::lookAt(cameraTransform.position, cameraTransform.position + cameraComponent.front, cameraComponent.up);
 }
 
-glm::mat4 BasicRendererSystem::getProjectionMat() {
-	return glm::mat4(1.0);
+glm::mat4 BasicRenderSystem::getProjectionMat() {
+	return glm::perspective(
+		camera->getComponent<CameraComponent>().FOV,
+		(float)windowDimensions->width / (float)windowDimensions->height,
+		0.1f,
+		100.0f
+	);
 }
+
+
 
 
 

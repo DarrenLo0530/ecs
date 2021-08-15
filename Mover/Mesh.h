@@ -27,8 +27,6 @@ struct Mesh {
 	std::vector<unsigned int> indices;
 	std::vector<Texture> textures;
 
-	unsigned int getVAO() const;
-
 	Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices, const std::vector<Texture>& textures) {
 		this->vertices = vertices;
 		this->indices = indices;

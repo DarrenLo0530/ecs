@@ -26,3 +26,7 @@ void World::destroyEntity(EntityHandle entity) {
 void World::update() {
 	systemManager->update();
 }
+
+void World::render() const {
+	systemManager->render();
+}

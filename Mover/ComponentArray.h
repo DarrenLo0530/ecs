@@ -2,21 +2,19 @@
 
 #include <cassert>
 #include <unordered_map>
-
 #include "Entity.h"
 #include <iostream>
 
 class IComponentArray {
 public:
-	virtual ~IComponentArray() = default;
 	virtual void removeEntityComponent(Entity entity) = 0;
 };
 	
 template<typename ComponentType>
 class ComponentArray : public IComponentArray {
 private:
-	int size;
-	std::array<ComponentType*, MAX_ENTITIES> componentArray;
+	int size = 0;
+	std::array<std::shared_ptr<ComponentType>, MAX_ENTITIES> componentArray;
 	std::unordered_map<Entity, int> entityToIndexMap;
 	std::unordered_map<int, Entity> indexToEntityMap;
 public:
@@ -28,7 +26,7 @@ public:
 		int componentIndex = size;
 		entityToIndexMap[entity] = componentIndex;
 		indexToEntityMap[componentIndex] = entity;
-		componentArray[componentIndex] = &component;
+		componentArray[componentIndex] = std::make_shared<ComponentType>(component);
 
 		size++;
 	}
