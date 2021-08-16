@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <string> 
-
+#include <iostream>
 
 class Window
 {
@@ -15,6 +15,10 @@ public:
 		float mouseX, mouseY;
 		bool pressedKeys[MAX_KEYS];
 		bool pressedMouseButtons[MAX_MOUSE_BUTTONS];
+
+		bool isPressed(GLenum key) const {
+			return pressedKeys[key];
+		}
 	};
 
 	struct Dimensions {
@@ -36,8 +40,8 @@ public:
 	unsigned int getWidth() const ;
 	unsigned int getHeight() const;
 
-	const Input& getInputs() const;
-	const Dimensions& getDimensions() const;
+	const Input* getInputs() const;
+	const Dimensions* getDimensions() const;
 private:
 	static void framebuffer_size_callback(GLFWwindow* id, int width, int height);
 	static void key_callback(GLFWwindow* id, int key, int scancode, int action, int mods);

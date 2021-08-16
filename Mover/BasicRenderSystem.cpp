@@ -1,6 +1,7 @@
 #include "BasicRenderSystem.h"
 #include "CameraComponent.h"
 #include "Renderer.h"
+#include "View.h"
 
 
 BasicRenderSystem::BasicRenderSystem(const EntityHandle* camera, const Window::Dimensions* windowDimensions) {
@@ -12,8 +13,8 @@ void BasicRenderSystem::init() {
 	registerComponent<Model>();
 	registerComponent<Transform>();
 
-	basicShader = Shader("shaders/basicShader.vert", "shaders/basicShader.frag");
-	basicShader.link();
+	basicShader = std::make_unique<Shader>(Shader("shaders/basicShader.vert", "shaders/basicShader.frag"));
+	basicShader->link();
 }
 
 float vertices[] = {
@@ -41,7 +42,7 @@ void BasicRenderSystem::render() {
 		glBindVertexArray(0);
 	}
 
-	basicShader.use();
+	basicShader->use();
 	for (const auto& entity : entities) {
 		auto& transform = entity.getComponent<Transform>();
 		auto& model = entity.getComponent<Model>();
@@ -51,20 +52,20 @@ void BasicRenderSystem::render() {
 		modelMat *= glm::mat4_cast(transform.rotation);
 		modelMat = glm::scale(modelMat, transform.scale);
 
-		basicShader.setMat4("model", modelMat);
+		basicShader->setMat4("model", modelMat);
 
-		basicShader.setMat4("view", getViewMat());
-		basicShader.setMat4("projection", getProjectionMat());
+		basicShader->setMat4("view", getViewMat());
+		basicShader->setMat4("projection", getProjectionMat());
 
-		Renderer::renderModel(model, basicShader);
+		Renderer::renderModel(model, *basicShader);
 	}
 }
 
 glm::mat4 BasicRenderSystem::getViewMat() {
 	auto& cameraTransform = camera->getComponent<Transform>();
-	auto& cameraComponent = camera->getComponent<CameraComponent>();
+	auto& cameraView = camera->getComponent<View>();
 
-	return glm::lookAt(cameraTransform.position, cameraTransform.position + cameraComponent.front, cameraComponent.up);
+	return glm::lookAt(cameraTransform.position, cameraTransform.position + cameraView.front, cameraView.up);
 }
 
 glm::mat4 BasicRenderSystem::getProjectionMat() {

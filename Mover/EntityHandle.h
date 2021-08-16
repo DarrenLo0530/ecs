@@ -19,7 +19,7 @@ public:
 	}
 
 	template <typename ComponentType>
-	void addComponent(ComponentType& component) const {
+	void addComponent(const ComponentType& component) const {
 		parentWorld->addComponent(id, component);
 	}
 

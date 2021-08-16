@@ -67,12 +67,12 @@ unsigned int Window::getHeight() const {
 	return dimensions.height;
 }
 
-const Window::Input& Window::getInputs() const {
-	return inputs;
+const Window::Input* Window::getInputs() const {
+	return &inputs;
 }
 
-const Window::Dimensions& Window::getDimensions() const {
-	return dimensions;
+const Window::Dimensions* Window::getDimensions() const {
+	return &dimensions;
 }
 // Callbacks
 
@@ -86,14 +86,14 @@ void Window::framebuffer_size_callback(GLFWwindow* id, int width, int height) {
 
 void Window::cursor_pos_callback(GLFWwindow* id, double xPos, double yPos) {
 	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
-	Window::Input inputs = window->inputs;
+	Window::Input& inputs = window->inputs;
 	inputs.mouseX = (float)xPos;
 	inputs.mouseY = (float)yPos;
 }
 
 void Window::key_callback(GLFWwindow* id, int key, int scancode, int action, int mods) {
 	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
-	Window::Input inputs = window->inputs;
+	Window::Input& inputs = window->inputs;
 
 	if (action == GLFW_PRESS) {
 		inputs.pressedKeys[key] = true;
@@ -104,7 +104,7 @@ void Window::key_callback(GLFWwindow* id, int key, int scancode, int action, int
 
 void Window::mouse_button_callback(GLFWwindow* id, int button, int action, int mods) {
 	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
-	Window::Input inputs = window->inputs;
+	Window::Input& inputs = window->inputs;
 
 	if (action == GLFW_PRESS) {
 		inputs.pressedMouseButtons[button] = true;

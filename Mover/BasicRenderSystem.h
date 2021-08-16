@@ -10,7 +10,7 @@
 
 class BasicRenderSystem : public RenderSystem {
 private:
-	Shader basicShader;
+	std::unique_ptr<Shader> basicShader;
 	const EntityHandle* camera;
 	const Window::Dimensions* windowDimensions;
 public:

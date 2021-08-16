@@ -39,7 +39,7 @@ public:
 	}
 
 	template <typename ComponentType>
-	void addComponent(Entity entity, ComponentType& component) {
+	void addComponent(Entity entity, const ComponentType& component) {
 		componentManager->addComponent(entity, component);
 
 

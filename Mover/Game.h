@@ -7,8 +7,6 @@ public:
 	const Window::Input* inputs = NULL;
 	const Window::Dimensions* dimensions;
 public:
-	virtual ~Game() = default;
-
 	virtual void init() = 0;
 
 	// Update components (including input component for player)
@@ -18,8 +16,8 @@ public:
 	virtual void render(float interpolation) = 0;
 
 	void setWindow(const Window& window) {
-		this->inputs = &(window.getInputs());
-		this->dimensions = &(window.getDimensions());
+		this->inputs = window.getInputs();
+		this->dimensions = window.getDimensions();
 	}
 
 };

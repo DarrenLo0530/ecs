@@ -3,6 +3,7 @@
 
 #include "Transform.h"
 #include "CameraComponent.h"
+#include "View.h"
 
 namespace Camera {
 	void createCamera(EntityHandle* camera) {
@@ -11,5 +12,8 @@ namespace Camera {
 
 		CameraComponent cameraComponent{};
 		camera->addComponent(cameraComponent);
+
+		View view{};
+		camera->addComponent(view);
 	}
 }

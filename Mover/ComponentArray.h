@@ -18,10 +18,8 @@ private:
 	std::unordered_map<Entity, int> entityToIndexMap;
 	std::unordered_map<int, Entity> indexToEntityMap;
 public:
-	void addEntityComponent(Entity entity, ComponentType& component) {
+	void addEntityComponent(Entity entity, const ComponentType& component) {
 		assert(entityToIndexMap.find(entity) == entityToIndexMap.end() && "Component already added");
-
-		ComponentType* test = &component;
 
 		int componentIndex = size;
 		entityToIndexMap[entity] = componentIndex;

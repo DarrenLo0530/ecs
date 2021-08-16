@@ -102,6 +102,15 @@
     <ClCompile Include="BasicRenderSystem.cpp">
       <Filter>Source Files\engine\systems</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerInputSystem.h">
+      <Filter>Header Files\engine\ecs\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraAttachSystem.cpp">
+      <Filter>Source Files\engine\ecs\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInputSystem.cpp">
+      <Filter>Source Files\engine\ecs\systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EntityManager.h">
@@ -191,8 +200,26 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\engine\ecs</Filter>
     </ClInclude>
-    <ClInclude Include="ObserverMoveSystem.h">
+    <ClInclude Include="RigidBody.h">
+      <Filter>Header Files\engine\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystm.h">
       <Filter>Header Files\engine\ecs\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystem.cpp">
+      <Filter>Source Files\engine\ecs\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="AttachComponent.h">
+      <Filter>Header Files\engine\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInput.h">
+      <Filter>Header Files\engine\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraAttachSystem.h">
+      <Filter>Header Files\engine\ecs\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
