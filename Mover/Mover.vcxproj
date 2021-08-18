@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CameraAttachSystem.cpp" />
     <ClCompile Include="BasicRenderSystem.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -154,8 +153,6 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AttachComponent.h" />
-    <ClInclude Include="CameraAttachSystem.h" />
     <ClInclude Include="BasicRenderSystem.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraComponent.h" />

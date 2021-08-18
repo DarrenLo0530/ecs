@@ -21,7 +21,7 @@ Window::Window(const std::string& title, unsigned int width, unsigned int height
 	}
 
 	glfwMakeContextCurrent(id);
-	// glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	// Set callbacks
 	glfwSetWindowUserPointer(id, this);
@@ -87,6 +87,7 @@ void Window::framebuffer_size_callback(GLFWwindow* id, int width, int height) {
 void Window::cursor_pos_callback(GLFWwindow* id, double xPos, double yPos) {
 	Window* window = static_cast<Window*>(glfwGetWindowUserPointer(id));
 	Window::Input& inputs = window->inputs;
+
 	inputs.mouseX = (float)xPos;
 	inputs.mouseY = (float)yPos;
 }

@@ -6,22 +6,20 @@
 #include "PlayerInput.h"
 
 #include "PlayerInputSystem.h"
-#include "CameraAttachSystem.h"
-#include "AttachComponent.h"
 
 void Mover::init() {
 	gameWorld = new World();
 
 	// Systems
 	gameWorld->registerUpdateSystem<PlayerInputSystem>();
-	gameWorld->registerUpdateSystem<CameraAttachSystem>();
 
 
 	camera = gameWorld->createEntity();
 	Camera::createCamera(&camera);
+	camera.getComponent<CameraComponent>().viewport = dimensions;
 
 	// Systems 
-	gameWorld->registerRenderSystem<BasicRenderSystem>(&camera, dimensions);
+	gameWorld->registerRenderSystem<BasicRenderSystem>(&camera);
 
 	EntityHandle backpack = gameWorld->createEntity();
 
@@ -36,17 +34,14 @@ void Mover::init() {
 
 
 	player.addComponent<Transform>(Transform{});
-	player.addComponent<View>(View{});
+
+	View view{};
+	view.viewCamera = camera;
+	player.addComponent<View>(view);
+
 	PlayerInput playerInput{};
 	playerInput.input = inputs;
 	player.addComponent<PlayerInput>(playerInput);
-
-	AttachComponent cameraAttach{};
-	cameraAttach.attachedEntity = player;
-	camera.addComponent<AttachComponent>(cameraAttach);
-
-
-
 }
 
 

@@ -105,9 +105,6 @@
     <ClCompile Include="PlayerInputSystem.h">
       <Filter>Header Files\engine\ecs\systems</Filter>
     </ClCompile>
-    <ClCompile Include="CameraAttachSystem.cpp">
-      <Filter>Source Files\engine\ecs\systems</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerInputSystem.cpp">
       <Filter>Source Files\engine\ecs\systems</Filter>
     </ClCompile>
@@ -209,14 +206,8 @@
     <ClInclude Include="PhysicsSystem.cpp">
       <Filter>Source Files\engine\ecs\systems</Filter>
     </ClInclude>
-    <ClInclude Include="AttachComponent.h">
-      <Filter>Header Files\engine\ecs\components</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerInput.h">
       <Filter>Header Files\engine\ecs\components</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraAttachSystem.h">
-      <Filter>Header Files\engine\ecs\systems</Filter>
     </ClInclude>
     <ClInclude Include="View.h">
       <Filter>Header Files\engine\ecs\components</Filter>

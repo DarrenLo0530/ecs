@@ -12,9 +12,8 @@ class BasicRenderSystem : public RenderSystem {
 private:
 	std::unique_ptr<Shader> basicShader;
 	const EntityHandle* camera;
-	const Window::Dimensions* windowDimensions;
 public:
-	BasicRenderSystem(const EntityHandle* camera, const Window::Dimensions* windowDimensions);
+	BasicRenderSystem(const EntityHandle* camera);
 
 	void init() override;
 

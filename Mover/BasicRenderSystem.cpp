@@ -4,9 +4,8 @@
 #include "View.h"
 
 
-BasicRenderSystem::BasicRenderSystem(const EntityHandle* camera, const Window::Dimensions* windowDimensions) {
+BasicRenderSystem::BasicRenderSystem(const EntityHandle* camera) {
 	this->camera = camera;
-	this->windowDimensions = windowDimensions;
 }
 
 void BasicRenderSystem::init() {
@@ -63,17 +62,18 @@ void BasicRenderSystem::render() {
 
 glm::mat4 BasicRenderSystem::getViewMat() {
 	auto& cameraTransform = camera->getComponent<Transform>();
-	auto& cameraView = camera->getComponent<View>();
-
-	return glm::lookAt(cameraTransform.position, cameraTransform.position + cameraView.front, cameraView.up);
+	glm::mat4 rotate = glm::mat4_cast(cameraTransform.rotation);
+	glm::mat4 translate = glm::translate(glm::mat4(1.0), -cameraTransform.position);
+	return rotate * translate;
 }
 
 glm::mat4 BasicRenderSystem::getProjectionMat() {
+	auto& cameraComponent = camera->getComponent<CameraComponent>();
 	return glm::perspective(
-		camera->getComponent<CameraComponent>().FOV,
-		(float)windowDimensions->width / (float)windowDimensions->height,
-		0.1f,
-		100.0f
+		cameraComponent.FOV,
+		(float) cameraComponent.viewport->width / cameraComponent.viewport->height,
+		cameraComponent.nearPlane,
+		cameraComponent.farPlane
 	);
 }
 

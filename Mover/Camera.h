@@ -12,8 +12,5 @@ namespace Camera {
 
 		CameraComponent cameraComponent{};
 		camera->addComponent(cameraComponent);
-
-		View view{};
-		camera->addComponent(view);
 	}
 }
