@@ -62,9 +62,9 @@ void BasicRenderSystem::render() {
 
 glm::mat4 BasicRenderSystem::getViewMat() {
 	auto& cameraTransform = camera->getComponent<Transform>();
-	glm::mat4 rotate = glm::mat4_cast(cameraTransform.rotation);
-	glm::mat4 translate = glm::translate(glm::mat4(1.0), -cameraTransform.position);
-	return rotate * translate;
+	auto cameraDirections = cameraTransform.getDirectionVectors();
+
+	return glm::lookAt(cameraTransform.position, cameraTransform.position + cameraDirections.front, glm::vec3(0, 1, 0));
 }
 
 glm::mat4 BasicRenderSystem::getProjectionMat() {

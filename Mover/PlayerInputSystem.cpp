@@ -20,10 +20,19 @@ float wrap(float num, float lower, float upper) {
 	} else if (num > upper) {
 		return num - (upper - lower);
 	}
-
 	return num;
 }
 
+float getPitch(const glm::vec3& front) {
+	return glm::degrees(asin(front.y));
+}
+
+float getYaw(const glm::vec3& front) {
+	glm::vec2 initialSide = glm::vec2(1, 0);
+	glm::vec2 terminalSide = glm::normalize(glm::vec2(-front.z, -front.x));
+	return glm::degrees(atan2(initialSide.x * terminalSide.y - terminalSide.x * initialSide.y, glm::dot(initialSide, terminalSide)));
+
+}
 void PlayerInputSystem::update() {
 	float speed = 0.2f;
 	for (auto& player : entities) {
@@ -35,64 +44,61 @@ void PlayerInputSystem::update() {
 		auto& cameraTransform = camera.getComponent<Transform>();
 		auto& cameraComponent = camera.getComponent<CameraComponent>();
 
-
 		// Keyboard input
 
+		Transform::Directions playerDirections = playerTansform.getDirectionVectors();
+
 		if (input->isPressed(GLFW_KEY_W)) {
-			playerTansform.position += playerTansform.front * speed;
+			playerTansform.position += playerDirections.front * speed;
 		}
 		if (input->isPressed(GLFW_KEY_S)) {
-			playerTansform.position -= playerTansform.front * speed;
+			playerTansform.position -= playerDirections.front * speed;
 		}
 		if (input->isPressed(GLFW_KEY_A)) {
-			playerTansform.position += playerTansform.right * speed;
+			playerTansform.position -= playerDirections.right * speed;
 		}
 		if (input->isPressed(GLFW_KEY_D)) {
-			playerTansform.position -= playerTansform.right * speed;
+			playerTansform.position += playerDirections.right * speed;
 		}
 		if (input->isPressed(GLFW_KEY_UP)) {
-			playerTansform.position += playerTansform.up * speed;
+			playerTansform.position += playerDirections.up * speed;
 		}
 		if (input->isPressed(GLFW_KEY_DOWN)) {
-			playerTansform.position -= playerTansform.up * speed;
+			playerTansform.position -= playerDirections.up * speed;
 		}
 
-		// Camera and player rortations;
+		cameraTransform.position = playerTansform.position;
 
+		// Camera and player rotations;
 		if (firstMousePoll) {
 			firstMousePoll = false;
 			prevMouseX = input->mouseX;
 			prevMouseY = input->mouseY;
 		}
 
-		glm::vec3 test = glm::eulerAngles(cameraTransform.rotation);
+		float dYaw = -(input->mouseX - prevMouseX) * 0.1f;
+		float dPitch = -(input->mouseY - prevMouseY) * 0.1f;
 
-		// std::cout << input->mouseX - prevMouseX << std::endl;
-		float dYaw = (input->mouseX - prevMouseX) * 0.1f;
-		float dPitch = (input->mouseY - prevMouseY) * 0.1f;
+		prevMouseX = input->mouseX;
+		prevMouseY = input->mouseY;
 
-		float& yaw = cameraComponent.yaw;
-		float& pitch = cameraComponent.pitch;
+		glm::vec3 cameraFront = cameraTransform.getFront();
 
-		yaw += dYaw;
-		pitch += dPitch;
+		float pitch = getPitch(cameraFront), yaw = getYaw(cameraFront);
 
-		yaw = wrap(yaw, -180.0f, 180.0f);
-		pitch = glm::clamp(pitch, -89.0f, 89.0f);
-
+		yaw = wrap(yaw + dYaw, -180.0f, 180.0f);
+		pitch = glm::clamp(pitch + dPitch, -89.0f, 89.0f);
 
 		glm::quat qYaw = glm::angleAxis(glm::radians(yaw), glm::vec3(0, 1, 0));
 		glm::quat qPitch = glm::angleAxis(glm::radians(pitch), glm::vec3(1, 0, 0));
 
-		cameraTransform.rotation = glm::normalize( qPitch * qYaw );
+		cameraTransform.rotation = qYaw * qPitch;
+		playerTansform.rotation = qYaw;
 
-		prevMouseX = input->mouseX;
-		prevMouseY = input->mouseY;
 
 
 		// Link player and camera;
 
 		// Mouse input
-		cameraTransform.updateDirections();
 	}
 }
