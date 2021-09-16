@@ -1,4 +1,4 @@
-# Mover
+# ECS
 
 This is an attempt at an ECS (Entity Component Systm) game engine in C++. It has a renderer using OpenGL and physics system using Bullet3.
 
