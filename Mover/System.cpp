@@ -3,12 +3,22 @@
 
 #include <iostream>
 
-void BaseSystem::addEntity(Entity entity) {
-	entities.insert(EntityHandle(entity, parentWorld));
+EntityHandle BaseSystem::wrapHandle(Entity entity) {
+	return EntityHandle(entity, parentWorld);
 }
 
-void BaseSystem::removeEntity(Entity entity) {
-	entities.erase(EntityHandle(entity, NULL));
+void BaseSystem::addEntity(Entity entity) {
+	entities.insert(wrapHandle(entity));
+}
+
+bool BaseSystem::removeEntity(Entity entity) {
+	auto it = entities.find(EntityHandle(entity, NULL));
+	if (it == entities.end()) {
+		return false;
+	}
+
+	entities.erase(it);
+	return true;
 }
 
 const Signature& BaseSystem::getSignature() const {

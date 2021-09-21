@@ -6,42 +6,47 @@
 #include "PlayerInput.h"
 
 #include "PlayerInputSystem.h"
+#include "PhysicsSystem.h"
 
+#include "Converter.h"
+#include <iostream>;
 void Mover::init() {
 	gameWorld = new World();
-
-	// Systems
-	gameWorld->registerUpdateSystem<PlayerInputSystem>();
-
 
 	camera = gameWorld->createEntity();
 	Camera::createCamera(&camera);
 	camera.getComponent<CameraComponent>().viewport = dimensions;
 
-	// Systems 
+	// Systems
+	gameWorld->registerUpdateSystem<PlayerInputSystem>();
+	gameWorld->registerUpdateSystem<PhysicsSystem>();
 	gameWorld->registerRenderSystem<BasicRenderSystem>(&camera);
 
-	EntityHandle backpack = gameWorld->createEntity();
+	{
+		EntityHandle cube = gameWorld->createEntity();
 
-	Transform t = Transform{};
-	t.position = glm::vec3(0.0, 0.0, -1.0);
-	backpack.addComponent(t);
+		Transform t = Transform{};
+		t.position = glm::vec3(0.0, 0.0, -1.0);
+		cube.addComponent(t);
 
-	Model m = ModelLoader::loadModel("models/backpack/backpack.obj");
-	backpack.addComponent(m);
+		Model m = ModelLoader::loadModel("models/cube/cube.obj");
+		cube.addComponent(m);
+	}
 
-	EntityHandle player = gameWorld->createEntity();
+	{
+		EntityHandle player = gameWorld->createEntity();
 
 
-	player.addComponent<Transform>(Transform{});
+		player.addComponent<Transform>(Transform{});
 
-	View view{};
-	view.viewCamera = camera;
-	player.addComponent<View>(view);
+		View view{};
+		view.viewCamera = camera;
+		player.addComponent<View>(view);
 
-	PlayerInput playerInput{};
-	playerInput.input = inputs;
-	player.addComponent<PlayerInput>(playerInput);
+		PlayerInput playerInput{};
+		playerInput.input = inputs;
+		player.addComponent<PlayerInput>(playerInput);
+	}
 }
 
 

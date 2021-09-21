@@ -17,8 +17,9 @@ protected:
 public:
 	BaseSystem() = default;
 
-	void addEntity(Entity entity);
-	void removeEntity(Entity entity);
+	EntityHandle wrapHandle(Entity entity);
+	virtual void addEntity(Entity entity);
+	virtual bool removeEntity(Entity entity);
 	const Signature& getSignature() const;
 
 	void setParentWorld(World* world);

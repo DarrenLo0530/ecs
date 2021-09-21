@@ -1,7 +1,7 @@
+#include "EntityHandle.h"
 #include "PlayerInputSystem.h"
 #include "PlayerInput.h"
 #include "Transform.h"
-#include "EntityHandle.h"
 #include "View.h"
 #include "CameraComponent.h"
 #include <glm/gtx/euler_angles.hpp>
@@ -15,6 +15,7 @@ void PlayerInputSystem::init() {
 }
 
 float wrap(float num, float lower, float upper) {
+	// Clamsp a number around a lower and upper bound. If it is larger of smaller, it wraps around.
 	if (num < lower) {
 		return num + (upper - lower);
 	} else if (num > upper) {
@@ -24,10 +25,12 @@ float wrap(float num, float lower, float upper) {
 }
 
 float getPitch(const glm::vec3& front) {
+	// Calculates the pitch from the front vector relative to (0, 0, -1)
 	return glm::degrees(asin(front.y));
 }
 
 float getYaw(const glm::vec3& front) {
+	// Calculates the yaw from the front vector relative to (0, 0, -1)
 	glm::vec2 initialSide = glm::vec2(1, 0);
 	glm::vec2 terminalSide = glm::normalize(glm::vec2(-front.z, -front.x));
 	return glm::degrees(atan2(initialSide.x * terminalSide.y - terminalSide.x * initialSide.y, glm::dot(initialSide, terminalSide)));
@@ -44,8 +47,7 @@ void PlayerInputSystem::update() {
 		auto& cameraTransform = camera.getComponent<Transform>();
 		auto& cameraComponent = camera.getComponent<CameraComponent>();
 
-		// Keyboard input
-
+		// Interprets the keyboard input.
 		Transform::Directions playerDirections = playerTansform.getDirectionVectors();
 
 		if (input->isPressed(GLFW_KEY_W)) {
@@ -67,7 +69,6 @@ void PlayerInputSystem::update() {
 			playerTansform.position -= playerDirections.up * speed;
 		}
 
-		cameraTransform.position = playerTansform.position;
 
 		// Camera and player rotations;
 		if (firstMousePoll) {
@@ -91,14 +92,10 @@ void PlayerInputSystem::update() {
 
 		glm::quat qYaw = glm::angleAxis(glm::radians(yaw), glm::vec3(0, 1, 0));
 		glm::quat qPitch = glm::angleAxis(glm::radians(pitch), glm::vec3(1, 0, 0));
-
-		cameraTransform.rotation = qYaw * qPitch;
 		playerTansform.rotation = qYaw;
 
-
-
-		// Link player and camera;
-
-		// Mouse input
+		// Links the camera to the player
+		cameraTransform.position = playerTansform.position;
+		cameraTransform.rotation = qYaw * qPitch;
 	}
 }

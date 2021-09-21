@@ -67,8 +67,8 @@
     <Filter Include="Resource Files\shaders">
       <UniqueIdentifier>{286e3fde-cad8-450d-a808-9b449816ed03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\engine\systems">
-      <UniqueIdentifier>{1095122f-a26e-4c0c-a716-e9bcd869389f}</UniqueIdentifier>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{e2f05afe-7179-461d-8779-2fd61b857005}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,13 +99,13 @@
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\engine\components</Filter>
     </ClCompile>
-    <ClCompile Include="BasicRenderSystem.cpp">
-      <Filter>Source Files\engine\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerInputSystem.h">
-      <Filter>Header Files\engine\ecs\systems</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerInputSystem.cpp">
+      <Filter>Source Files\engine\ecs\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp">
+      <Filter>Source Files\engine\ecs\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicRenderSystem.cpp">
       <Filter>Source Files\engine\ecs\systems</Filter>
     </ClCompile>
   </ItemGroup>
@@ -200,17 +200,23 @@
     <ClInclude Include="RigidBody.h">
       <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsSystm.h">
-      <Filter>Header Files\engine\ecs\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsSystem.cpp">
-      <Filter>Source Files\engine\ecs\systems</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerInput.h">
       <Filter>Header Files\engine\ecs\components</Filter>
     </ClInclude>
     <ClInclude Include="View.h">
       <Filter>Header Files\engine\ecs\components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInputSystem.h">
+      <Filter>Header Files\engine\ecs\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystem.h">
+      <Filter>Header Files\engine\ecs\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshColliderLoader.h">
+      <Filter>Header Files\engine\ecs\loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Converter.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
