@@ -14,15 +14,15 @@
 #include "Converter.h"
 
 namespace MeshColliderLoader {
-	void processNode(aiNode* node, const aiScene* scene, btTriangleMesh* meshCollider);
-	void processMesh(aiMesh* mesh, btTriangleMesh* meshCollider);
-	btTriangleMesh* loadMeshCollider(std::string path);
+	inline void processNode(aiNode* node, const aiScene* scene, btTriangleMesh* meshCollider);
+	inline void processMesh(aiMesh* mesh, btTriangleMesh* meshCollider);
+	inline btTriangleMeshShape* loadMeshCollider(std::string path);
 
-	btTriangleMesh* loadMeshCollider(std::string path) {
+	btTriangleMeshShape* loadMeshCollider(std::string path) {
 
 		// Import scene
 		Assimp::Importer importer;
-		const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+		const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals  );
 
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 			// Scene was not loaded in properly
@@ -30,10 +30,13 @@ namespace MeshColliderLoader {
 		}
 
 
-		btTriangleMesh* meshCollider = new btTriangleMesh();
+		btTriangleMesh* mesh = new btTriangleMesh();
 
 		// Start processing nodes recursively
-		processNode(scene->mRootNode, scene, );
+		processNode(scene->mRootNode, scene, mesh);
+
+		btTriangleMeshShape* meshCollider = new btBvhTriangleMeshShape(mesh, 1);
+
 		return meshCollider;
 	}
 
@@ -47,6 +50,7 @@ namespace MeshColliderLoader {
 
 			// Get actual mesh from the index store in the scene
 			aiMesh* mesh = scene->mMeshes[meshIndex];
+			processMesh(mesh, meshCollider);
 		}
 
 
@@ -58,6 +62,7 @@ namespace MeshColliderLoader {
 
 	void processMesh(aiMesh* mesh, btTriangleMesh* meshCollider) {
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
+			std::cout << "HI" << std::endl;
 			aiFace& face = mesh->mFaces[i];
 			meshCollider->addTriangle(
 				Converter::aiVecTobtVec(mesh->mVertices[face.mIndices[0]]),

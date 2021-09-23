@@ -1,14 +1,17 @@
+#include "Converter.h"
+
 #include "Mover.h"
 #include "EntityHandle.h"
 #include "Camera.h"
 #include "BasicRenderSystem.h"
 #include "ModelLoader.h"
+#include "MeshColliderLoader.h"
 #include "PlayerInput.h"
+#include "RigidBody.h"
 
 #include "PlayerInputSystem.h"
 #include "PhysicsSystem.h"
 
-#include "Converter.h"
 #include <iostream>;
 void Mover::init() {
 	gameWorld = new World();
@@ -31,6 +34,11 @@ void Mover::init() {
 
 		Model m = ModelLoader::loadModel("models/cube/cube.obj");
 		cube.addComponent(m);
+
+		btCollisionShape* collider = MeshColliderLoader::loadMeshCollider("models/cube/cube.obj");
+		RigidBody rigidBody(collider, 5.0f, true);
+
+		cube.addComponent(rigidBody);
 	}
 
 	{

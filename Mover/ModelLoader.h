@@ -11,10 +11,10 @@
 #include <stb_image.h>
 
 namespace ModelLoader {
-	Model loadModel(std::string path);
-	void processNode(aiNode* node, const aiScene* scene);
-	Mesh processMesh(aiMesh* mesh, const aiScene* scene);
-	std::vector<Texture> loadMaterialTextures(aiMaterial* material, aiTextureType textureType);
+	inline Model loadModel(std::string path);
+	inline void processNode(aiNode* node, const aiScene* scene);
+	inline Mesh processMesh(aiMesh* mesh, const aiScene* scene);
+	inline std::vector<Texture> loadMaterialTextures(aiMaterial* material, aiTextureType textureType);
 
 	std::string directory;
 	std::vector<Mesh> meshes;

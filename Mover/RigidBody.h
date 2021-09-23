@@ -13,16 +13,8 @@ struct RigidBody : public Component<RigidBody> {
 		btTransform transform;
 		transform.setIdentity();
 
-
-		// Setting up dynamics
-		btVector3 localInertia(0, 0, 0);
-		if (isDynamic) {
-			collider->calculateLocalInertia(mass, localInertia);
-		}
-
 		btDefaultMotionState* motionState = new btDefaultMotionState(transform);
 
-		btRigidBody::btRigidBodyConstructionInfo rbInfo(btScalar(mass), motionState, collider, localInertia);
-		bulletRigidBody = new btRigidBody(rbInfo);
+		bulletRigidBody = new btRigidBody(10.0f, motionState, collider);
 	}
 };

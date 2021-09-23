@@ -48,6 +48,7 @@ void BasicRenderSystem::render() {
 
 		glm::mat4 modelMat = glm::mat4(1.0);
 		modelMat = glm::translate(modelMat, transform.position);
+
 		modelMat *= glm::mat4_cast(transform.rotation);
 		modelMat = glm::scale(modelMat, transform.scale);
 
