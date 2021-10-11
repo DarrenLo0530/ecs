@@ -24,7 +24,6 @@ void PhysicsSystem::addEntity(Entity entity) {
 
 	RigidBody rigidBody = addedEntity.getComponent<RigidBody>();
 
-	std::cout << "Added" << std::endl;
 	dynamicsWorld->addRigidBody(rigidBody.bulletRigidBody);
 	colliders.push_back(rigidBody.bulletRigidBody->getCollisionShape());
 
@@ -36,6 +35,8 @@ bool PhysicsSystem::removeEntity(Entity entity) {
 		return false;
 	}
 	
+
+
 
 	// Thee entity was actually removed from the system
 	EntityHandle removedEntity = wrapHandle(entity);

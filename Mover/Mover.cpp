@@ -5,7 +5,8 @@
 #include "Camera.h"
 #include "BasicRenderSystem.h"
 #include "ModelLoader.h"
-#include "MeshColliderLoader.h"
+#include "StaticMeshLoader.h"
+#include "ConvexMeshLoader.h"
 #include "PlayerInput.h"
 #include "RigidBody.h"
 
@@ -29,16 +30,36 @@ void Mover::init() {
 		EntityHandle cube = gameWorld->createEntity();
 
 		Transform t = Transform{};
-		t.position = glm::vec3(0.0, 0.0, -1.0);
+		t.position = glm::vec3(0.0, 5.0, -1.0);
 		cube.addComponent(t);
 
-		Model m = ModelLoader::loadModel("models/cube/cube.obj");
+		Model m = ModelLoader::loadModel("models/cube/cube.fbx");
 		cube.addComponent(m);
 
-		btCollisionShape* collider = MeshColliderLoader::loadMeshCollider("models/cube/cube.obj");
-		RigidBody rigidBody(collider, 5.0f, true);
+		EntityMotionState* motionState = new EntityMotionState(&cube.getComponent<Transform>());
+
+		btCollisionShape* collider = ConvexMeshLoader::loadMeshCollider("models/cube/cube.fbx");
+		RigidBody rigidBody(collider, motionState, 5.0f);
 
 		cube.addComponent(rigidBody);
+	}
+
+	{
+		EntityHandle plane = gameWorld->createEntity();
+
+		Transform t = Transform{};
+		t.position = glm::vec3(0.0, -20.0, -1.0);
+		plane.addComponent(t);
+
+		Model m = ModelLoader::loadModel("models/plane/plane.obj");
+		plane.addComponent(m);
+
+		EntityMotionState* motionState = new EntityMotionState(&plane.getComponent<Transform>());
+
+		btCollisionShape* collider = StaticMeshLoader::loadMeshCollider("models/plane/plane.obj");
+		RigidBody rigidBody(collider, motionState, 0.0f);
+
+		plane.addComponent(rigidBody);
 	}
 
 	{

@@ -9,6 +9,7 @@ namespace Renderer {
 	void attachTextures(const std::vector<Texture>& textures, const Shader& shader);
 	void renderMesh(const Mesh& mesh, const Shader& shader);
 	void renderModel(const Model& model, const Shader& shader);
+	void detachTextures(const std::vector<Texture>& textures, const Shader& shader);
 
 	std::unordered_map<aiTextureType, std::string> uniformPrefixes = {
 		{ aiTextureType_DIFFUSE,  "textureDiffuse" },
@@ -37,12 +38,21 @@ namespace Renderer {
 		glActiveTexture(GL_TEXTURE0);
 	}
 
+	void detachTextures(const std::vector<Texture>& textures, const Shader& shader) {
+		for (unsigned int i = 0; i < textures.size(); i++) {
+			glActiveTexture(GL_TEXTURE0 + i);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
+	}
+
 	void renderMesh(const Mesh& mesh, const Shader& shader) {
 		attachTextures(mesh.textures, shader);
 
 		glBindVertexArray(mesh.VAO);
 
 		glDrawElements(GL_TRIANGLES, mesh.indices.size(), GL_UNSIGNED_INT, 0);
+
+		detachTextures(mesh.textures, shader);
 
 		glBindVertexArray(0);
 	}
@@ -53,5 +63,7 @@ namespace Renderer {
 		for (const Mesh& mesh : model.meshes) {
 			renderMesh(mesh, shader);
 		}
+
+		
 	}
 };
