@@ -57,15 +57,14 @@ namespace ConvexMeshLoader {
 		}
 
 		btConvexHullShape* preMeshCollider = new btConvexHullShape();
-
+		preMeshCollider->setMargin(0.0001f);
 		// Start processing nodes recursively
 		processNode(scene->mRootNode, scene, preMeshCollider);
-		preMeshCollider->setMargin(0);
 
 		btShapeHull* hull = new btShapeHull(preMeshCollider);
-		hull->buildHull(0);
+		hull->buildHull(preMeshCollider->getMargin(), 1);
 		btConvexHullShape* postMeshCollider = new btConvexHullShape((const btScalar*)hull->getVertexPointer(), hull->numVertices());
-
+		postMeshCollider->setMargin(0.0001f);
 
 		return postMeshCollider;
 	}

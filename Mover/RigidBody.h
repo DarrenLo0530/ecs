@@ -14,7 +14,7 @@ struct EntityMotionState : btMotionState {
 	void getWorldTransform(btTransform& worldTrans) const override {
 		worldTrans.getOrigin().setX(transform->position.x);
 		worldTrans.getOrigin().setY(transform->position.y);
-		worldTrans.getOrigin().setX(transform->position.z);
+		worldTrans.getOrigin().setZ(transform->position.z);
 	}
 
 	void setWorldTransform(const btTransform& worldTrans) override {
@@ -25,7 +25,7 @@ struct EntityMotionState : btMotionState {
 struct RigidBody : public Component<RigidBody> {
 	btRigidBody* bulletRigidBody;
 
-	RigidBody(btCollisionShape* collider, btMotionState* motionState, float mass) {
-		bulletRigidBody = new btRigidBody(mass, motionState, collider);
+	RigidBody(btRigidBody* bulletRigidBody) {
+		this->bulletRigidBody = bulletRigidBody;
 	}
 };

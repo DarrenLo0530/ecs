@@ -63,6 +63,7 @@ namespace StaticMeshLoader {
 		processNode(scene->mRootNode, scene, mesh);
 
 		btCollisionShape* meshCollider = new btBvhTriangleMeshShape(mesh, 1);
+
 		return meshCollider;
 	}
 }

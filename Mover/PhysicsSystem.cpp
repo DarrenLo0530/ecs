@@ -36,8 +36,6 @@ bool PhysicsSystem::removeEntity(Entity entity) {
 	}
 	
 
-
-
 	// Thee entity was actually removed from the system
 	EntityHandle removedEntity = wrapHandle(entity);
 
@@ -50,16 +48,6 @@ bool PhysicsSystem::removeEntity(Entity entity) {
 
 void PhysicsSystem::update() {
 	dynamicsWorld->stepSimulation(1.0f/30.0f, 10);
-
-	for (EntityHandle entity : entities) {
-		Transform& transform = entity.getComponent<Transform>();
-		btRigidBody* rigidBody = entity.getComponent<RigidBody>().bulletRigidBody;
-
-
-		btTransform bulletTransform = rigidBody->getWorldTransform();
-		transform.position = Converter::btVectoVec(bulletTransform.getOrigin());
-
-	}
 }
 
 

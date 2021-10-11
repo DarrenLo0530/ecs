@@ -27,10 +27,32 @@ void Mover::init() {
 	gameWorld->registerRenderSystem<BasicRenderSystem>(&camera);
 
 	{
+		EntityHandle plane = gameWorld->createEntity();
+
+		Transform t = Transform{};
+		t.position = glm::vec3(0.0, 0.0, 1.0);
+		plane.addComponent(t);
+
+		Model m = ModelLoader::loadModel("models/plane/plane.fbx");
+		plane.addComponent(m);
+
+		EntityMotionState* motionState = new EntityMotionState(&plane.getComponent<Transform>());
+
+		btCollisionShape* collider = StaticMeshLoader::loadMeshCollider("models/plane/plane.fbx");
+		btRigidBody* bulletRigidBody = new btRigidBody(0.0f, motionState, collider);
+		bulletRigidBody->setRestitution(0.2);
+		bulletRigidBody->setFriction(0.9);
+		RigidBody rigidBody(bulletRigidBody);
+
+
+		plane.addComponent(rigidBody);
+	}
+
+	{
 		EntityHandle cube = gameWorld->createEntity();
 
 		Transform t = Transform{};
-		t.position = glm::vec3(0.0, 5.0, -1.0);
+		t.position = glm::vec3(0.0, 20.0, 1.0);
 		cube.addComponent(t);
 
 		Model m = ModelLoader::loadModel("models/cube/cube.fbx");
@@ -39,28 +61,17 @@ void Mover::init() {
 		EntityMotionState* motionState = new EntityMotionState(&cube.getComponent<Transform>());
 
 		btCollisionShape* collider = ConvexMeshLoader::loadMeshCollider("models/cube/cube.fbx");
-		RigidBody rigidBody(collider, motionState, 5.0f);
+		
+		btVector3 inertia;
+		collider->calculateLocalInertia(5.0f, inertia);
+
+		btRigidBody* bulletRigidBody = new btRigidBody(5.0f, motionState, collider, inertia);
+		RigidBody rigidBody(bulletRigidBody);
 
 		cube.addComponent(rigidBody);
 	}
 
-	{
-		EntityHandle plane = gameWorld->createEntity();
 
-		Transform t = Transform{};
-		t.position = glm::vec3(0.0, -20.0, -1.0);
-		plane.addComponent(t);
-
-		Model m = ModelLoader::loadModel("models/plane/plane.obj");
-		plane.addComponent(m);
-
-		EntityMotionState* motionState = new EntityMotionState(&plane.getComponent<Transform>());
-
-		btCollisionShape* collider = StaticMeshLoader::loadMeshCollider("models/plane/plane.obj");
-		RigidBody rigidBody(collider, motionState, 0.0f);
-
-		plane.addComponent(rigidBody);
-	}
 
 	{
 		EntityHandle player = gameWorld->createEntity();
